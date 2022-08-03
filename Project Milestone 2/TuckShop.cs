@@ -508,6 +508,7 @@ namespace Project_Milestone_2
             try
             {
                 saleManager.AddBlankSale(date);
+                ShowSales();
             }
             catch (Exception ex)
             {
