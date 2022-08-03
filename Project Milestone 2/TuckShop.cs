@@ -133,6 +133,9 @@ namespace Project_Milestone_2
             cboEditAddItemCategory.DataSource = itemManager.FillCategories();
             cboEditAddItemCategory.DisplayMember = "Category";
             cboEditAddItemCategory.ValueMember = "CategoryID";
+            cboEditFilterValue.DataSource = itemManager.FillCategories();
+            cboEditFilterValue.DisplayMember = "Category";
+            cboEditFilterValue.ValueMember = "CategoryID";            
             cboSaleItems.DataSource = itemManager.FillNames();
             cboSaleItems.DisplayMember = "ItemName";
             cboSaleItems.ValueMember = "ItemID";
