@@ -461,6 +461,8 @@ namespace Project_Milestone_2
             if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
             {
                 DisableEditForm();///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                pnlEditAddSaleDetail.Visible = true;
+                pnlEditAddSaleDetail.Enabled = true;
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
