@@ -102,7 +102,7 @@ namespace Project_Milestone_2
         public bool RemoveSaleDetail(string saleID, string itemName)
         {
             bool success = false;
-            string cmdString = $"SELECT ItemID FROM Items WHERE ItemName = {itemName}";
+            string cmdString = $"SELECT ItemID FROM Items WHERE ItemName = '{itemName}'";
             SqlCommand sqlCommand = new SqlCommand
             {
                 Connection = sqlConnection,
