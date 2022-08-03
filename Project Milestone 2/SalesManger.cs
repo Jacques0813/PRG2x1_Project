@@ -19,7 +19,7 @@ namespace Project_Milestone_2
         public bool AddBlankSale(DateTime time)
         {
             bool success = false;         
-            string cmdString = $"INSERT INTO Sale (TotalPrice, TimePlaced) VALUES (0, {time})";
+            string cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES (0, '{time}')";
             SqlCommand sqlCommand = new SqlCommand
             {
                 Connection = sqlConnection,
