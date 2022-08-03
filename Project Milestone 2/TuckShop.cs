@@ -38,6 +38,8 @@ namespace Project_Milestone_2
         public bool isCategory = false;
         // Counts the number of records in Edit
         public int editRecordCount;
+        // Stores the saleID for later use
+        public string currentSaleID;
 
         public static void AutoColumnsWidth(DataGridView dataGridView) 
         {
@@ -306,6 +308,7 @@ namespace Project_Milestone_2
             quantities.Clear();
             prices.Clear();
             itemName.Clear();
+            itemID.Clear();
         }
 
         private void BtnOrderAdd(object sender, EventArgs e)
@@ -468,7 +471,7 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
             {
-                DisableEditForm();///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                DisableEditForm();
                 pnlEditAddSaleDetail.Visible = true;
                 pnlEditAddSaleDetail.Enabled = true;
             }
@@ -555,6 +558,38 @@ namespace Project_Milestone_2
             EnableEditForm();
             pnlEditAddSale.Visible = false;
             pnlEditAddSale.Enabled = false;
+        }
+
+        private void btnEditAddSaleDetailCancel_Click(object sender, EventArgs e)
+        {
+            EnableEditForm();
+            pnlEditAddSaleDetail.Visible = false;
+            pnlEditAddSaleDetail.Enabled = false;
+        }
+
+        private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)
+        {
+            string itemID = cboEditAddSaleDetailItem.SelectedValue.ToString();
+            int quantity = int.Parse(nudEditAddSaleDetailQuantity.Value.ToString());
+            bool hasDublicate = false;
+            try
+            {
+                // Adds a blank record.//////////////////////////////////////////////////////////////////////////////////////////////
+                if (saleManager.AddSaleDetail(currentSaleID, itemID, quantity))
+                {
+                    MessageBox.Show("The record has been added");
+                }
+                // Refreshes.
+                
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Invoke(ex);
+            }
+            EnableEditForm();
+            dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
+            pnlEditAddSaleDetail.Visible = false;
+            pnlEditAddSaleDetail.Enabled = false;
         }
 
         private void BtnEditChange_Click(object sender, EventArgs e)
@@ -735,8 +770,8 @@ namespace Project_Milestone_2
                 //Show details///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 try
                 {
-                    string saleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                    dgvEdit.DataSource = saleManager.ShowSaleDetails(saleID);
+                    currentSaleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
                 }
                 catch (Exception ex)
                 {
