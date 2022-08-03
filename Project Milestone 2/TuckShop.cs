@@ -613,6 +613,9 @@ namespace Project_Milestone_2
                 pnlEditChangeSaleDetail.Visible = true;
                 pnlEditChangeSaleDetail.Enabled = true;
                 btnSalesBack.Enabled = false;
+                // Outputs the current values selected, into the input-areas.
+                cboEditChangeSaleDetail.SelectedIndex = cboEditChangeSaleDetail.FindStringExact(dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                nudEditChangeSaleDetail.Value = int.Parse(dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[2].Value.ToString());
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
@@ -696,7 +699,29 @@ namespace Project_Milestone_2
 
         private void btnEditChangeSaleDetailSubmit_Click(object sender, EventArgs e)
         {
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            string itemID = cboEditChangeSaleDetail.SelectedValue.ToString();
+            int quantity = int.Parse(nudEditChangeSaleDetail.Value.ToString());
+            var result = MessageBox.Show("Are you sure you want to update the following values: \nQuantity:" + 
+                                         dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[2].Value.ToString() +
+                                         " >> "  + nudEditChangeSaleDetail.Value.ToString(), "Change values", 
+                                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    saleManager.UpdateSaleDetail(currentSaleID, itemID, quantity);
+                }
+                catch (Exception ex)
+                {
+                    ErrorHandler.Invoke(ex);
+                }
+                dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
+                EnableEditForm();
+                pnlEditChangeSaleDetail.Visible = false;
+                pnlEditChangeSaleDetail.Enabled = false;
+                btnSalesBack.Enabled = true;
+                btnExitEdit.Enabled = false;
+            }
         }
 
         private void BtnEditRemove_Click(object sender, EventArgs e)
