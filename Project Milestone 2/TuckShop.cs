@@ -686,7 +686,11 @@ namespace Project_Milestone_2
                 // Error check.
                 try
                 {
-                    if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
+                    if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
+                    {
+                        saleManager.RemoveSaleDetail(currentSaleID, ID);/////////////////////////////////////////////////////////////////////////
+                    }
+                    else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
                     {
                         itemManager.RemoveItem(ID);
                         // Refreshes values.
@@ -749,6 +753,7 @@ namespace Project_Milestone_2
             cboEditFilterValue.Enabled = false;
             isDate = false;
             isCategory = false;
+            // Chnages input depending on which field is being filtered.
             if (cboEditFilterField.Text == "TimePlaced")
             {
                 txtEditFilterValue.Visible = false;
@@ -772,7 +777,6 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.Text == "Sales")
             {
-                //Show details///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 try
                 {
                     currentSaleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
