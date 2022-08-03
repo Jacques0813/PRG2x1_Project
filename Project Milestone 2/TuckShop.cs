@@ -45,19 +45,6 @@ namespace Project_Milestone_2
             {
                 dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-         
-            // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
-            for (int i = 0; i < dataGridView.Columns.Count; i++)
-            {
-                // Store Auto Sized Widths:
-                int colw = dataGridView.Columns[i].Width;
-
-                // Remove AutoSizing:
-                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-                // Set Width to calculated AutoSize value:
-                dataGridView.Columns[i].Width = colw;
-            }
         }
 
         public static void HandleError(Exception ex)
