@@ -83,6 +83,7 @@ namespace Project_Milestone_2
                         }
                     }
                 }
+                price *= quantity;
                 cmdString = $"INSERT INTO SaleItems (SaleID, ItemID, Price, Quantity) VALUES ({saleID}, {itemID}, {price}, {quantity})";
                 sqlCommand.CommandText = cmdString;
                 int rows = sqlCommand.ExecuteNonQuery();
