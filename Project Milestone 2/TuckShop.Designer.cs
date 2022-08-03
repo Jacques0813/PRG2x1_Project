@@ -183,7 +183,6 @@ namespace Project_Milestone_2
             this.btnRemoveOrder = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.btnOrderAdd = new System.Windows.Forms.Button();
-            this.btnOrderSearch = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.btnExitOrder = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -1787,7 +1786,6 @@ namespace Project_Milestone_2
             this.panel14.Controls.Add(this.btnRemoveOrder);
             this.panel14.Controls.Add(this.numericUpDown1);
             this.panel14.Controls.Add(this.btnOrderAdd);
-            this.panel14.Controls.Add(this.btnOrderSearch);
             this.panel14.Location = new System.Drawing.Point(0, 35);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(261, 147);
@@ -1825,7 +1823,7 @@ namespace Project_Milestone_2
             // 
             this.btnClearOrder.Location = new System.Drawing.Point(47, 53);
             this.btnClearOrder.Name = "btnClearOrder";
-            this.btnClearOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnClearOrder.Size = new System.Drawing.Size(156, 23);
             this.btnClearOrder.TabIndex = 7;
             this.btnClearOrder.Text = "Clear";
             this.btnClearOrder.UseVisualStyleBackColor = true;
@@ -1863,15 +1861,6 @@ namespace Project_Milestone_2
             this.btnOrderAdd.TabIndex = 5;
             this.btnOrderAdd.Text = "Add";
             this.btnOrderAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnOrderSearch
-            // 
-            this.btnOrderSearch.Location = new System.Drawing.Point(128, 53);
-            this.btnOrderSearch.Name = "btnOrderSearch";
-            this.btnOrderSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnOrderSearch.TabIndex = 4;
-            this.btnOrderSearch.Text = "Search";
-            this.btnOrderSearch.UseVisualStyleBackColor = true;
             // 
             // panel13
             // 
@@ -2461,7 +2450,6 @@ namespace Project_Milestone_2
         private System.Windows.Forms.Button btnRemoveOrder;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button btnOrderAdd;
-        private System.Windows.Forms.Button btnOrderSearch;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Button btnExitOrder;
         private System.Windows.Forms.Label label27;
