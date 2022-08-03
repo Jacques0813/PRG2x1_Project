@@ -476,7 +476,10 @@ namespace Project_Milestone_2
                 int itemCategory = int.Parse(cboEditAddItemCategory.SelectedValue.ToString());                
                 int itemQuantity = int.Parse(nudEditAddItemQuantity.Value.ToString());
 
-                itemManager.AddItem(itemName, itemCategory, itemQuantity, itemPrice);
+                if (itemManager.AddItem(itemName, itemCategory, itemQuantity, itemPrice))
+                {
+                    MessageBox.Show("The record has been added");
+                }
                 // Refreshes values.
                 ShowItems();
             }
@@ -488,6 +491,29 @@ namespace Project_Milestone_2
             EnableEditForm();
             pnlEditAddItem.Visible = false;
             pnlEditAddItem.Enabled = false;
+        }
+
+        private void btnEditSaleAddCancel_Click(object sender, EventArgs e)
+        {
+            EnableEditForm();
+            pnlEditAddSale.Visible = false;
+            pnlEditAddSale.Enabled = false;
+        }
+
+        private void btnEditSaleAddSubmit_Click(object sender, EventArgs e)
+        {
+            DateTime date = dtpEditAddSaleDate.Value;
+            try
+            {
+                saleManager.AddBlankSale(date);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Invoke(ex);
+            }
+            EnableEditForm();///////////////////////////////////////////////////////////////////////////////
+            pnlEditAddSale.Visible = false;
+            pnlEditAddSale.Enabled = false;
         }
 
         private void BtnEditChange_Click(object sender, EventArgs e)
@@ -653,21 +679,6 @@ namespace Project_Milestone_2
                 dtpEditFilterValue.Enabled = false;
                 isDate = false;
             }
-        }
-
-        private void btnEditSaleAddCancel_Click(object sender, EventArgs e)
-        {
-            EnableEditForm();///////////////////////////////////////////////////////////////////////////////
-            pnlEditAddSale.Visible = false;
-            pnlEditAddSale.Enabled = false;
-        }
-
-        private void btnEditSaleAddSubmit_Click(object sender, EventArgs e)
-        {
-            string date = dtpEditAddSaleDate.Value.ToString();
-            EnableEditForm();///////////////////////////////////////////////////////////////////////////////
-            pnlEditAddSale.Visible = false;
-            pnlEditAddSale.Enabled = false;
         }
 
         // If a person double-clicks a sale, the sale-details will display
