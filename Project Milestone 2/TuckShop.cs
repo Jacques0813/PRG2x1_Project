@@ -458,7 +458,11 @@ namespace Project_Milestone_2
 
         private void BtnEditAdd_Click(object sender, EventArgs e)
         {
-            if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
+            if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
+            {
+                DisableEditForm();///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
                 DisableEditForm();
                 pnlEditAddItem.Visible = true;
@@ -681,10 +685,6 @@ namespace Project_Milestone_2
                 // Determines wether the detail-table is selected.
                 detailSelected = false;
             }
-            else if (cboEditCurrentTable.SelectedItem.ToString() == "Individual sales")
-            {
-                
-            }
         }
 
         // When the user wants to filter according to a strange input the input format has to change
@@ -723,15 +723,24 @@ namespace Project_Milestone_2
             if (cboEditCurrentTable.Text == "Sales")
             {
                 //Show details///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                string saleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                dgvEdit.DataSource = saleManager.ShowSaleDetails(saleID);
+                try
+                {
+                    string saleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    dgvEdit.DataSource = saleManager.ShowSaleDetails(saleID);
+                }
+                catch (Exception ex)
+                {
+                    ErrorHandler.Invoke(ex);
+                }
+                cboEditCurrentTable.Items.Add("Details");
+                cboEditCurrentTable.SelectedItem = "Details";
+                cboEditCurrentTable.Enabled = false;
                 // Give a way to go back.
                 btnSalesBack.Visible = true;
                 btnSalesBack.Enabled = true;
                 lblSale.Visible = false;
                 // Determines wether the detail-table is selected.
                 detailSelected = true;
-
             }
         }
 
@@ -743,6 +752,9 @@ namespace Project_Milestone_2
             lblSale.Visible = true;
             // Determines wether the detail-table is selected.
             detailSelected = false;
+            cboEditCurrentTable.Items.Remove("Details");
+            cboEditCurrentTable.SelectedItem = "Sales";
+            cboEditCurrentTable.Enabled = true;
         }
 
         // Methods used for validation by disabling/enabling certain inputs.
