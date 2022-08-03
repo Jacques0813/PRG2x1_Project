@@ -252,7 +252,7 @@ namespace Project_Milestone_2
 
         public DataTable ShowSaleDetails(String id)
         {
-            string cmdString = $"SELECT I.ItemName, S.Price, S.Quantity FROM SaleItems S INNER JOIN Items I ON I.ItemID = S.ItemID WHERE S.SaleID = {id}";
+            string cmdString = $"SELECT I.ItemName, (I.Price * S.Quantity) AS [Cost], S.Quantity FROM SaleItems S INNER JOIN Items I ON I.ItemID = S.ItemID WHERE S.SaleID = {id}";
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);
 
             DataSet ds = new DataSet();
