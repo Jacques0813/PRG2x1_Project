@@ -308,6 +308,7 @@ namespace Project_Milestone_2
             quantities.Clear();
             prices.Clear();
             itemName.Clear();
+            itemID.Clear();
         }
 
         private void BtnOrderAdd(object sender, EventArgs e)
