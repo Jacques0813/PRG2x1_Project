@@ -98,10 +98,10 @@ namespace Project_Milestone_2
             return success;
         }
 
-        public bool RemoveSaleDetail(string saleID, string itemID, int quantity, string price)
+        public bool RemoveSaleDetail(string saleID, string itemID)
         {
             bool success = false;
-            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand
