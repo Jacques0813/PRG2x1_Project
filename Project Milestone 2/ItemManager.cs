@@ -55,33 +55,6 @@ namespace Project_Milestone_2
             return success;
         }
 
-        // This method increases the quantity of an item by the given amount(Can be negative).
-        public bool ChangeQuantity(String id, int quantity)
-        {
-            bool success = false;
-            string cmdString = "UPDATE Items SET Quantity = Quantity + @quant WHERE ItemID = @id";
-            SqlCommand sqlCommand = new SqlCommand
-            {
-                Connection = sqlConnection,
-                CommandText = cmdString
-            };
-            sqlCommand.Parameters.AddWithValue("@id", id);
-            sqlCommand.Parameters.AddWithValue("@quant", quantity);
-            try
-            {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            return success;
-        }
-
         // This method changes the an items information.
         public bool UpdateItemInfo(string update)
         {
@@ -95,7 +68,7 @@ namespace Project_Milestone_2
 
             string id = splitUpdate[0];
             string itemName = splitUpdate[1];
-            string price = splitUpdate[2];           
+            string price = splitUpdate[2];
             string quantity = splitUpdate[3];
             string category = splitUpdate[4];
 
@@ -194,7 +167,7 @@ namespace Project_Milestone_2
                 {
                     cmdString += $" AND I.{fields[i]} {signs[i]} {values[i]}";
                 }
-            }         
+            }
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);
 
             DataSet ds = new DataSet();
@@ -209,11 +182,11 @@ namespace Project_Milestone_2
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);
 
             DataSet ds = new DataSet();
-            dataAdapter.Fill(ds);          
+            dataAdapter.Fill(ds);
             return ds.Tables[0];
         }
 
-        public DataTable FillCategories() 
+        public DataTable FillCategories()
         {
             string cmdString = "SELECT * FROM Category";
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);

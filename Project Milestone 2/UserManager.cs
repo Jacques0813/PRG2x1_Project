@@ -1,20 +1,22 @@
 ﻿using System.Data.SqlClient;
 using System.Windows.Forms;
 using System;
+using System.Data;
 
 namespace Project_Milestone_2
 {
-    public enum UserDetail { 
+    public enum UserDetail
+    {
         Email,
         Password,
-        Name, 
+        Name,
         Surname
     }
     internal class UserManager
     {
         public string userName;
         public string userSurname;
-        public string userEmail;       
+        public string userEmail;
         readonly SqlConnection sqlConnection;
         public UserManager(SqlConnection sqlConnection)
         {
@@ -25,38 +27,40 @@ namespace Project_Milestone_2
         public bool Login(string email, string password)
         {
             bool ableToLogin = false;
-            string cmdString = "SELECT * FROM Users WHERE Email = @email AND Password = @password";
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = cmdString;
-            sqlCommand.Parameters.AddWithValue("@email", email);
-            sqlCommand.Parameters.AddWithValue("@password", password);
+            string cmdString = $"SELECT * FROM Users WHERE Email LIKE '{email}' AND Password LIKE '{password}'";
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = cmdString
+            };
             try
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows == 1)
+                sqlCommand.ExecuteNonQuery();
+
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
-                    ableToLogin = true;
-                    userEmail = email;
-                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    if (dataReader.HasRows)
                     {
+                        ableToLogin = true;
+                        userEmail = email;
                         while (dataReader.Read())
-                        {                            
+                        {
                             userName = (string)dataReader["Name"];
                             userSurname = (string)dataReader["Surname"];
                         }
                     }
                 }
+
             }
-            catch (SqlException e)
+            catch
             {
-                MessageBox.Show(e.Message);
+
             }
             return ableToLogin;
         }
 
         // This method increases the quantity of an item by the given amount(Can be negative).
-        public bool ChangeDetail(UserDetail userDetail,String newValue)
+        public bool ChangeDetail(UserDetail userDetail, String newValue)
         {
             bool success = false;
             string cmdString = $"UPDATE Users SET \"{userDetail.ToString()}\" = @value WHERE Email = @email";
@@ -104,12 +108,12 @@ namespace Project_Milestone_2
             }
             if (exists)
             {
-                return false;            
+                return false;
             }
             else
             {
                 bool success = false;
-                cmdString = "INSERT INTO Users VALUES (@email, @password)";                      
+                cmdString = "INSERT INTO Users VALUES (@email, @password)";
                 sqlCommand.CommandText = cmdString;
                 sqlCommand.Parameters.AddWithValue("@email", email);
                 sqlCommand.Parameters.AddWithValue("@password", password);
@@ -138,6 +142,16 @@ namespace Project_Milestone_2
                 }
                 return success;
             }
+        }
+        public DataTable ShowAll()
+        {
+            string cmdString = "SELECT * FROM Users";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);
+
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            return ds.Tables[0];
         }
     }
 }

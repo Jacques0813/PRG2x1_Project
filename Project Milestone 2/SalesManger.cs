@@ -41,7 +41,7 @@ namespace Project_Milestone_2
                     sqlCommand.Parameters.AddWithValue("@quant", quantities[i]);
                     sqlCommand.ExecuteNonQuery();
                 }
-                
+
                 cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES ({prices.Sum()}, #{DateTime.Now}#)";
                 int saleRows = sqlCommand.ExecuteNonQuery();
 
@@ -61,17 +61,19 @@ namespace Project_Milestone_2
         public bool RemoveSale(String id)
         {
             bool success = false;
-            string cmdString = "DELETE FROM Sales WHERE SaleID = @id";
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {id}";
             SqlCommand sqlCommand = new SqlCommand
             {
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            sqlCommand.Parameters.AddWithValue("@id", id);
             try
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
+                int itemRows = sqlCommand.ExecuteNonQuery();
+                cmdString = $"DELETE FROM Sales WHERE SaleID = {id}";
+                sqlCommand.CommandText = cmdString;
+                int saleRows = sqlCommand.ExecuteNonQuery();
+                if (itemRows > 0 && saleRows > 0)
                 {
                     success = true;
                 }
@@ -114,7 +116,7 @@ namespace Project_Milestone_2
                     signs.Add("NOT LIKE");
                 else
                     signs.Add(splitFilters[1]);
-       
+
                 if ((splitFilters[1].Equals("LIKE") || splitFilters[1].Equals("NOT LIKE")) && !splitFilters[1].Equals("="))
                     values.Add($"%{splitFilters[2]}%");
                 else
@@ -134,6 +136,40 @@ namespace Project_Milestone_2
             dataAdapter.Fill(ds);
 
             return ds.Tables[0];
+        }
+        public bool UpdateSaleInfo(string update)
+        {
+            //id#ItemName#Price#Category#Quantity
+            // 0 = ID
+            // 1 = TotalPrice
+            // 2 = Time
+            var splitUpdate = update.Split('#');
+
+            string id = splitUpdate[0];
+            string totalPrice = splitUpdate[1];
+            string time = splitUpdate[2];
+
+            bool success = false;
+            string cmdString = $"UPDATE Sales SET TotalPrice = {totalPrice}, TimePlaced = {time} WHERE ItemID = @id";
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = cmdString
+            };
+            sqlCommand.Parameters.AddWithValue("@id", id);
+            try
+            {
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
         }
     }
 }
