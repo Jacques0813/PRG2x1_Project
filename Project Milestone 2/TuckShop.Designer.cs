@@ -733,6 +733,7 @@ namespace Project_Milestone_2
             this.btnEditAddSaleDetailCancel.TabIndex = 93;
             this.btnEditAddSaleDetailCancel.Text = "Cancel";
             this.btnEditAddSaleDetailCancel.UseVisualStyleBackColor = true;
+            this.btnEditAddSaleDetailCancel.Click += new System.EventHandler(this.btnEditAddSaleDetailCancel_Click);
             // 
             // btnEditAddSaleDetailSubmit
             // 
@@ -742,6 +743,7 @@ namespace Project_Milestone_2
             this.btnEditAddSaleDetailSubmit.TabIndex = 94;
             this.btnEditAddSaleDetailSubmit.Text = "Submit";
             this.btnEditAddSaleDetailSubmit.UseVisualStyleBackColor = true;
+            this.btnEditAddSaleDetailSubmit.Click += new System.EventHandler(this.btnEditAddSaleDetailSubmit_Click);
             // 
             // label12
             // 
