@@ -460,7 +460,8 @@ namespace Project_Milestone_2
                 else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
                 {
                     editSalesFilterList.Add(filter);
-                    dgvEdit.DataSource = saleManager.FilterSales(editSalesFilterList);////////////////////////////////////////////////////////////
+                    // Applies the filter (the list has an added filter so the filter method runs).
+                    ShowSales();
                     AutoColumnsWidth(dgvEdit);
                 }
 
@@ -577,7 +578,7 @@ namespace Project_Milestone_2
             btnExitEdit.Enabled = false;
         }
 
-        private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)
+        private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)///////////////////////////////////////////////////////////////////////////
         {
             string itemID = cboEditAddSaleDetailItem.SelectedValue.ToString();
             int quantity = int.Parse(nudEditAddSaleDetailQuantity.Value.ToString());
@@ -919,7 +920,7 @@ namespace Project_Milestone_2
         // This method checks if a filter is already applied or not when refreshing the datagrid.
         public void ShowSales()
         {
-            if (editItemsFilterList.Count > 0)
+            if (editSalesFilterList.Count > 0)
             {
                 // Gets the actual number of records.
                 dgvEdit.DataSource = saleManager.ShowAllSales();
