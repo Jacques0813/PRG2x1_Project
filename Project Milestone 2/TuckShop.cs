@@ -772,7 +772,7 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 dgvEdit.DataSource = itemManager.FilterItems(editItemsFilterList);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
-                AutoColumnsWidth(dgvEdit);
+                
             }
             else
             {
@@ -781,7 +781,7 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
             }
-            dgvEdit.DataSource = itemManager.ShowAllItems();
+            AutoColumnsWidth(dgvEdit);
         }
 
         // This method checks if a filter is already applied or not when refreshing the datagrid.
