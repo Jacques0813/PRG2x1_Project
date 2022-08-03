@@ -575,7 +575,6 @@ namespace Project_Milestone_2
             int quantity = int.Parse(nudEditAddSaleDetailQuantity.Value.ToString());
             try
             {
-                // Adds a blank record.//////////////////////////////////////////////////////////////////////////////////////////////
                 if (saleManager.AddSaleDetail(currentSaleID, itemID, quantity))
                 {
                     MessageBox.Show("The record has been added");
@@ -688,7 +687,9 @@ namespace Project_Milestone_2
                 {
                     if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
                     {
-                        saleManager.RemoveSaleDetail(currentSaleID, ID);/////////////////////////////////////////////////////////////////////////
+                        saleManager.RemoveSaleDetail(currentSaleID, ID);////////////////////////////////////////////////////////////////
+                        // Refreshes values.
+                        dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
                     }
                     else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
                     {

@@ -686,7 +686,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSaleDetail.Controls.Add(this.btnEditAddSaleDetailSubmit);
             this.pnlEditAddSaleDetail.Controls.Add(this.label12);
             this.pnlEditAddSaleDetail.Enabled = false;
-            this.pnlEditAddSaleDetail.Location = new System.Drawing.Point(653, 193);
+            this.pnlEditAddSaleDetail.Location = new System.Drawing.Point(360, 62);
             this.pnlEditAddSaleDetail.Name = "pnlEditAddSaleDetail";
             this.pnlEditAddSaleDetail.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSaleDetail.TabIndex = 92;
@@ -765,7 +765,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSale.Controls.Add(this.btnEditSaleAddSubmit);
             this.pnlEditAddSale.Controls.Add(this.label41);
             this.pnlEditAddSale.Enabled = false;
-            this.pnlEditAddSale.Location = new System.Drawing.Point(687, 28);
+            this.pnlEditAddSale.Location = new System.Drawing.Point(360, 63);
             this.pnlEditAddSale.Name = "pnlEditAddSale";
             this.pnlEditAddSale.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSale.TabIndex = 91;
@@ -865,7 +865,7 @@ namespace Project_Milestone_2
             this.pnlEditFilter.Controls.Add(this.label22);
             this.pnlEditFilter.Controls.Add(this.cboEditFilterField);
             this.pnlEditFilter.Enabled = false;
-            this.pnlEditFilter.Location = new System.Drawing.Point(45, 40);
+            this.pnlEditFilter.Location = new System.Drawing.Point(326, 65);
             this.pnlEditFilter.Name = "pnlEditFilter";
             this.pnlEditFilter.Size = new System.Drawing.Size(281, 207);
             this.pnlEditFilter.TabIndex = 23;
