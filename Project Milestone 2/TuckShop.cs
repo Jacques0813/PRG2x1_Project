@@ -253,6 +253,8 @@ namespace Project_Milestone_2
         {
             tcMainScreen.SelectedTab = tpEdit;
             Size = new Size(966, 558);
+            btnSalesBack.Visible = false;
+            btnSalesBack.Enabled = false;
             // Loads the default table as Items
             if (cboEditCurrentTable.SelectedIndex == -1)
                 cboEditCurrentTable.SelectedIndex = cboEditCurrentTable.FindString("Items");
@@ -794,6 +796,9 @@ namespace Project_Milestone_2
                 btnSalesBack.Visible = true;
                 btnSalesBack.Enabled = true;
                 lblSale.Visible = false;
+                btnExitEdit.Enabled = false;
+                btnEditFilter.Visible = false;
+                btnEditFilter.Enabled = false;
                 // Determines wether the detail-table is selected.
                 detailSelected = true;
             }
@@ -805,6 +810,9 @@ namespace Project_Milestone_2
             btnSalesBack.Visible = false;
             btnSalesBack.Enabled = false;
             lblSale.Visible = true;
+            btnExitEdit.Enabled = true;
+            btnEditFilter.Visible = true;
+            btnEditFilter.Enabled = true;
             // Determines wether the detail-table is selected.
             detailSelected = false;
             cboEditCurrentTable.Items.Remove("Details");
