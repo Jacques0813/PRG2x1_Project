@@ -136,6 +136,9 @@ namespace Project_Milestone_2
                 // 2 = value
                 var splitFilters = filter.Split('#');
                 fields.Add(splitFilters[0]);
+
+                
+
                 if (splitFilters[1].Equals("="))
                     signs.Add("LIKE");
                 else if (splitFilters[1].Equals("!="))
@@ -145,6 +148,8 @@ namespace Project_Milestone_2
 
                 if ((splitFilters[1].Equals("LIKE") || splitFilters[1].Equals("NOT LIKE")) && !splitFilters[1].Equals("="))
                     values.Add($"%{splitFilters[2]}%");
+                else if (splitFilters[0].Equals("TimePlaced"))
+                    values.Add($"#{splitFilters[2]}#");
                 else
                     values.Add(splitFilters[2]);
             }
