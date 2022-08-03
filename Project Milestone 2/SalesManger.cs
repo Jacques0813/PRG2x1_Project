@@ -141,7 +141,6 @@ namespace Project_Milestone_2
             };
             try
             {
-                int itemID = 0;
                 double price = 0;
                 using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
@@ -154,7 +153,7 @@ namespace Project_Milestone_2
                     }
                 }
                 price *= quantity;
-                cmdString = $"UPDATE SaleItems SET SaleID = {saleID}, ItemID = {itemID}, Quantity = {quantity}, Price = {price} WHERE SaleID = {saleID} AND ItemID = {itemID}";
+                cmdString = $"UPDATE SaleItems SET SaleID = {saleID}, ItemID = {id}, Quantity = {quantity}, Price = {price} WHERE SaleID = {saleID} AND ItemID = {id}";
                 sqlCommand.CommandText = cmdString;
                 int rows = sqlCommand.ExecuteNonQuery();
                 if (rows > 0)
