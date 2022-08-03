@@ -661,7 +661,7 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
-                ShowItems();
+                ShowItems();               
                 // Determines wether the detail-table is selected.
                 detailSelected = false;
                 lblSale.Visible = false;
@@ -768,13 +768,11 @@ namespace Project_Milestone_2
         {
             if (editItemsFilterList.Count > 0)
             {
-                // Gets the actual number of records.
-                dgvEdit.DataSource = itemManager.ShowAllItems();
-                AutoColumnsWidth(dgvEdit);
+                // Gets the actual number of records.                
                 editRecordCount = dgvEdit.Rows.Count - 1;
-
                 dgvEdit.DataSource = itemManager.FilterItems(editItemsFilterList);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
+                AutoColumnsWidth(dgvEdit);
             }
             else
             {
@@ -783,6 +781,7 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
             }
+            dgvEdit.DataSource = itemManager.ShowAllItems();
         }
 
         // This method checks if a filter is already applied or not when refreshing the datagrid.
