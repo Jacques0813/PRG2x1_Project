@@ -447,7 +447,6 @@ namespace Project_Milestone_2
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
             {
-                // STILL HAVE TO DO//////////////////////////////////////////////////////////////////////////////////////
                 if (isAdmin)
                 {
                     DisableEditForm();
@@ -505,16 +504,19 @@ namespace Project_Milestone_2
         private void btnEditSaleAddSubmit_Click(object sender, EventArgs e)
         {
             DateTime date = dtpEditAddSaleDate.Value;
+            // Error check.
             try
             {
+                // Adds a blank record.
                 saleManager.AddBlankSale(date);
+                // Refreshes.
                 ShowSales();
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
             }
-            EnableEditForm();///////////////////////////////////////////////////////////////////////////////
+            EnableEditForm();
             pnlEditAddSale.Visible = false;
             pnlEditAddSale.Enabled = false;
         }
@@ -666,6 +668,13 @@ namespace Project_Milestone_2
         // When the user wants to filter according to a date the input format has to change
         private void cboEditFilterField_SelectedValueChanged(object sender, EventArgs e)
         {
+            txtEditFilterValue.Visible = true;
+            txtEditFilterValue.Enabled = true;
+            dtpEditFilterValue.Visible = false;
+            dtpEditFilterValue.Enabled = false;
+            cboEditFilterValue.Visible = false;
+            cboEditFilterValue.Enabled = false;
+            isDate = false;
             if (cboEditFilterField.Text == "TimePlaced")
             {
                 txtEditFilterValue.Visible = false;
@@ -674,13 +683,12 @@ namespace Project_Milestone_2
                 dtpEditFilterValue.Enabled = true;
                 isDate = true;
             }
-            else
+            else if (cboEditFilterField.Text == "Category")
             {
-                txtEditFilterValue.Visible = true;
-                txtEditFilterValue.Enabled = true;
-                dtpEditFilterValue.Visible = false;
-                dtpEditFilterValue.Enabled = false;
-                isDate = false;
+                txtEditFilterValue.Visible = false;
+                txtEditFilterValue.Enabled = false;
+                cboEditFilterValue.Visible = true;
+                cboEditFilterValue.Enabled = true;
             }
         }
 

@@ -79,6 +79,7 @@ namespace Project_Milestone_2
             this.label38 = new System.Windows.Forms.Label();
             this.lblSale = new System.Windows.Forms.Label();
             this.pnlEditFilter = new System.Windows.Forms.Panel();
+            this.dtpEditFilterValue = new System.Windows.Forms.DateTimePicker();
             this.gboComparison = new System.Windows.Forms.GroupBox();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
@@ -215,7 +216,7 @@ namespace Project_Milestone_2
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnExitEditLogin = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
-            this.dtpEditFilterValue = new System.Windows.Forms.DateTimePicker();
+            this.cboEditFilterValue = new System.Windows.Forms.ComboBox();
             this.tcMainScreen.SuspendLayout();
             this.tpLogin.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -760,6 +761,7 @@ namespace Project_Milestone_2
             // 
             this.pnlEditFilter.BackColor = System.Drawing.Color.PowderBlue;
             this.pnlEditFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlEditFilter.Controls.Add(this.cboEditFilterValue);
             this.pnlEditFilter.Controls.Add(this.dtpEditFilterValue);
             this.pnlEditFilter.Controls.Add(this.gboComparison);
             this.pnlEditFilter.Controls.Add(this.label50);
@@ -777,6 +779,16 @@ namespace Project_Milestone_2
             this.pnlEditFilter.Size = new System.Drawing.Size(281, 207);
             this.pnlEditFilter.TabIndex = 23;
             this.pnlEditFilter.Visible = false;
+            // 
+            // dtpEditFilterValue
+            // 
+            this.dtpEditFilterValue.Enabled = false;
+            this.dtpEditFilterValue.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEditFilterValue.Location = new System.Drawing.Point(102, 148);
+            this.dtpEditFilterValue.Name = "dtpEditFilterValue";
+            this.dtpEditFilterValue.Size = new System.Drawing.Size(156, 20);
+            this.dtpEditFilterValue.TabIndex = 13;
+            this.dtpEditFilterValue.Visible = false;
             // 
             // gboComparison
             // 
@@ -2177,15 +2189,16 @@ namespace Project_Milestone_2
             this.label31.TabIndex = 15;
             this.label31.Text = "Edit User Details";
             // 
-            // dtpEditFilterValue
+            // cboEditFilterValue
             // 
-            this.dtpEditFilterValue.Enabled = false;
-            this.dtpEditFilterValue.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEditFilterValue.Location = new System.Drawing.Point(102, 148);
-            this.dtpEditFilterValue.Name = "dtpEditFilterValue";
-            this.dtpEditFilterValue.Size = new System.Drawing.Size(156, 20);
-            this.dtpEditFilterValue.TabIndex = 13;
-            this.dtpEditFilterValue.Visible = false;
+            this.cboEditFilterValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEditFilterValue.Enabled = false;
+            this.cboEditFilterValue.FormattingEnabled = true;
+            this.cboEditFilterValue.Location = new System.Drawing.Point(103, 147);
+            this.cboEditFilterValue.Name = "cboEditFilterValue";
+            this.cboEditFilterValue.Size = new System.Drawing.Size(155, 21);
+            this.cboEditFilterValue.TabIndex = 14;
+            this.cboEditFilterValue.Visible = false;
             // 
             // FrmTuckShop
             // 
@@ -2454,6 +2467,7 @@ namespace Project_Milestone_2
         private System.Windows.Forms.Button btnEditSaleAddSubmit;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.DateTimePicker dtpEditFilterValue;
+        private System.Windows.Forms.ComboBox cboEditFilterValue;
     }
 }
 
