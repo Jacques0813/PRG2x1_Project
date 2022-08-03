@@ -351,6 +351,8 @@ namespace Project_Milestone_2
             txtEditFilterValue.Enabled = true;
             dtpEditFilterValue.Visible = false;
             dtpEditFilterValue.Enabled = false;
+            cboEditFilterField.SelectedIndex = -1;
+            //gboComparison.Controls.OfType<RadioButton>().Select<radio>
         }
 
         private void BtnEditFiltersCancel_Click(object sender, EventArgs e)
