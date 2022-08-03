@@ -153,8 +153,7 @@ namespace Project_Milestone_2
             {
                 tab.Text = "";
             }
-            Size = new Size(215, 266);
-            saleManager.RemoveSaleDetail("8", "4", 5, "5477");
+            Size = new Size(215, 266);            
         }
         // Navigation
         public void OpenMenu()
