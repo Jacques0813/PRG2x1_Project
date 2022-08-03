@@ -154,7 +154,7 @@ namespace Project_Milestone_2
                 tab.Text = "";
             }
             Size = new Size(215, 266);
-            saleManager.AddSaleDetail("8", "4", 5);
+            saleManager.RemoveSaleDetail("8", "4", 5, "5477");
         }
         // Navigation
         public void OpenMenu()

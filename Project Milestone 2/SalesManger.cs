@@ -79,6 +79,54 @@ namespace Project_Milestone_2
             return success;
         }
 
+        public bool RemoveSaleDetail(string saleID, string itemID, int quantity, string price)
+        {
+            bool success = false;
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";               
+            try
+            {                
+                SqlCommand sqlCommand = new SqlCommand
+                {
+                    Connection = sqlConnection,
+                    CommandText = cmdString
+                };
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+        }
+
+        public bool RemoveSaleDetail(string saleID, string itemID, int quantity, string price)
+        {
+            bool success = false;
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand
+                {
+                    Connection = sqlConnection,
+                    CommandText = cmdString
+                };
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+        }
+
         public bool AddSale(List<int> quantities, List<double> prices, List<int> itemIDs)
         {
             bool success = false;
