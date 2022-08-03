@@ -42,12 +42,12 @@ namespace Project_Milestone_2
 
         }
 
-        public bool AddSaleDetail(string saleID, string itemID, int quantity) 
+        public bool AddSaleDetail(string saleID, string itemID, int quantity)
         {
             bool success = false;
-            string cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";               
+            string cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";
             try
-            {                
+            {
                 SqlCommand sqlCommand = new SqlCommand
                 {
                     Connection = sqlConnection,
@@ -55,12 +55,12 @@ namespace Project_Milestone_2
                 };
                 double price = 0;
                 using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                {                   
+                {
                     if (dataReader.HasRows)
                     {
                         while (dataReader.Read())
                         {
-                            price = (double)dataReader["Price"];                         
+                            price = (double)dataReader["Price"];
                         }
                     }
                 }
@@ -82,9 +82,9 @@ namespace Project_Milestone_2
         public bool RemoveSaleDetail(string saleID, string itemID, int quantity, string price)
         {
             bool success = false;
-            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";               
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";
             try
-            {                
+            {
                 SqlCommand sqlCommand = new SqlCommand
                 {
                     Connection = sqlConnection,
@@ -103,7 +103,7 @@ namespace Project_Milestone_2
             return success;
         }
 
-        public bool RemoveSaleDetail(string saleID, string itemID, int quantity, string price)
+        public bool DeleteSaleDetail(string saleID, string itemID, int quantity, string price)
         {
             bool success = false;
             string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";
