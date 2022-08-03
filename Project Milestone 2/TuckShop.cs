@@ -731,7 +731,7 @@ namespace Project_Milestone_2
                 lblSale.Visible = false;
                 // Determines wether the detail-table is selected.
                 detailSelected = true;
-
+                AutoColumnsWidth(dgvEdit);
             }
         }
 
