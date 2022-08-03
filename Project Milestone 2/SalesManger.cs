@@ -61,18 +61,16 @@ namespace Project_Milestone_2
         public bool RemoveSale(String id)
         {
             bool success = false;
-            string cmdString = "DELETE FROM SaleItems WHERE SaleID = @id";
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = '{id}'";
             SqlCommand sqlCommand = new SqlCommand
             {
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            sqlCommand.Parameters.AddWithValue("@id", id);
             try
             {
                 int itemRows = sqlCommand.ExecuteNonQuery();
-                cmdString = "DELETE FROM Sales WHERE SaleID = @id";
-                sqlCommand.Parameters.AddWithValue("@id", id);
+                cmdString = $"DELETE FROM Sales WHERE SaleID = '{id}'";
                 int saleRows = sqlCommand.ExecuteNonQuery();
                 if (itemRows > 0 && saleRows > 0)
                 {
