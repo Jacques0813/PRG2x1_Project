@@ -165,9 +165,13 @@ namespace Project_Milestone_2
             string message = "Email or Password incorrect.";
             if (userManager.Login(email, password))
             {
+                if (email == "Admin")
+                {
+                    isAdmin = true;
+                }
                 OpenMenu();
             }
-            else
+            else 
             {
                 MessageBox.Show(message);
             }
