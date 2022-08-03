@@ -98,17 +98,31 @@ namespace Project_Milestone_2
             return success;
         }
 
-        public bool RemoveSaleDetail(string saleID, string ItemName)
+        public bool RemoveSaleDetail(string saleID, string itemName)
         {
             bool success = false;
-            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
+            string cmdString = $"SELECT ItemID FROM Items WHERE ItemName = {itemName}";
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = cmdString
+            };
             try
             {
-                SqlCommand sqlCommand = new SqlCommand
+                string itemID = "";
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
-                    Connection = sqlConnection,
-                    CommandText = cmdString
-                };
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            itemID = (string)dataReader["ItemID"];
+                        }
+                    }
+                }
+                  
+                cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
+                sqlCommand.CommandText = cmdString;
                 int rows = sqlCommand.ExecuteNonQuery();
                 if (rows > 0)
                 {
