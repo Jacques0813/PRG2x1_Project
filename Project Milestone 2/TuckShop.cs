@@ -159,6 +159,11 @@ namespace Project_Milestone_2
             cboSaleItems.DisplayMember = "ItemName";
             cboSaleItems.ValueMember = "ItemID";
 
+            
+            cboEditChangeSaleDetail.DataSource = itemManager.FillNames();
+            cboEditChangeSaleDetail.DisplayMember = "ItemName";
+            cboEditChangeSaleDetail.ValueMember = "ItemID";
+
             foreach (TabPage tab in tcMainScreen.TabPages)
             {
                 tab.Text = "";
