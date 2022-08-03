@@ -19,7 +19,7 @@ namespace Project_Milestone_2
         public bool AddBlankSale(DateTime time)
         {
             bool success = false;         
-            string cmdString = $"INSERT INTO Sale (TotalPrice, TimePlaced) VALUES (0, #{time}#)";
+            string cmdString = $"INSERT INTO Sale (TotalPrice, TimePlaced) VALUES (0, {time})";
             SqlCommand sqlCommand = new SqlCommand
             {
                 Connection = sqlConnection,
@@ -139,9 +139,9 @@ namespace Project_Milestone_2
 
                 
 
-                if (splitFilters[1].Equals("="))
+                if (splitFilters[1].Equals("=") && !splitFilters[0].Equals("TimePlaced"))
                     signs.Add("LIKE");
-                else if (splitFilters[1].Equals("!="))
+                else if (splitFilters[1].Equals("!=") && !splitFilters[0].Equals("TimePlaced"))
                     signs.Add("NOT LIKE");
                 else
                     signs.Add(splitFilters[1]);
