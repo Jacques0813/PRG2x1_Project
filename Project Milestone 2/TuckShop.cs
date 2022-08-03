@@ -32,10 +32,21 @@ namespace Project_Milestone_2
         static UserManager userManager;
         static SalesManger saleManager;
         public bool isAdmin;
-        // Bool used in Edit page.
+        // Bools used in Edit page.
         public bool detailSelected;
+        public bool isDate = false;
+        public bool isCategory = false;
         // Counts the number of records in Edit
         public int editRecordCount;
+
+        public static void AutoColumnsWidth(DataGridView dataGridView) 
+        {
+            // Set your desired AutoSize Mode:
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
 
         public static void HandleError(Exception ex)
         {
@@ -129,12 +140,23 @@ namespace Project_Milestone_2
             cboEditChangeItemCategory.DataSource = itemManager.FillCategories();
             cboEditChangeItemCategory.DisplayMember = "Category";
             cboEditChangeItemCategory.ValueMember = "CategoryID";
+
             cboEditAddItemCategory.DataSource = itemManager.FillCategories();
             cboEditAddItemCategory.DisplayMember = "Category";
             cboEditAddItemCategory.ValueMember = "CategoryID";
+
+            cboEditFilterValue.DataSource = itemManager.FillCategories();
+            cboEditFilterValue.DisplayMember = "Category";
+            cboEditFilterValue.ValueMember = "CategoryID";
+
+            cboEditAddSaleDetailItem.DataSource = itemManager.FillNames();
+            cboEditAddSaleDetailItem.DisplayMember = "ItemName";
+            cboEditAddSaleDetailItem.ValueMember = "ItemID";
+
             cboSaleItems.DataSource = itemManager.FillNames();
             cboSaleItems.DisplayMember = "ItemName";
             cboSaleItems.ValueMember = "ItemID";
+
             foreach (TabPage tab in tcMainScreen.TabPages)
             {
                 tab.Text = "";
@@ -165,7 +187,7 @@ namespace Project_Milestone_2
             string message = "Email or Password incorrect.";
             if (userManager.Login(email, password))
             {
-                if (email == "Admin")
+                if (email == "ADMIN")
                 {
                     isAdmin = true;
                 }
@@ -233,6 +255,7 @@ namespace Project_Milestone_2
             if (cboEditCurrentTable.SelectedIndex == -1)
                 cboEditCurrentTable.SelectedIndex = cboEditCurrentTable.FindString("Items");
             dgvEdit.DataSource = itemManager.ShowAllItems();
+            AutoColumnsWidth(dgvEdit);
         }
 
         private void BtnViewRecords_Click(object sender, EventArgs e)
@@ -243,12 +266,18 @@ namespace Project_Milestone_2
 
         private void BtnEditLogin_Click(object sender, EventArgs e)
         {
-            //We have to check if the user is an admin
-            tcMainScreen.SelectedTab = tpAdminEditLogin;
-            Size = new Size(968, 561);
+            // We have to check if the user is an admin.
+            if (isAdmin)
+            {
+                tcMainScreen.SelectedTab = tpAdminEditLogin;
+                Size = new Size(968, 561);
+            }
+            else
+            {
 
-            //tcMainScreen.SelectedTab = tpEditLogin;
-            //Size = new Size(324, 266);
+                tcMainScreen.SelectedTab = tpEditLogin;
+                Size = new Size(324, 266);
+            }
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -340,6 +369,12 @@ namespace Project_Milestone_2
             DisableEditForm();
             pnlEditFilter.Visible = true;
             pnlEditFilter.Enabled = true;
+            txtEditFilterValue.Visible = true;
+            txtEditFilterValue.Enabled = true;
+            dtpEditFilterValue.Visible = false;
+            dtpEditFilterValue.Enabled = false;
+            cboEditFilterField.SelectedIndex = -1;
+            //gboComparison.Controls.OfType<RadioButton>().Select<radio>
         }
 
         private void BtnEditFiltersCancel_Click(object sender, EventArgs e)
@@ -391,7 +426,20 @@ namespace Project_Milestone_2
             try
             {
                 // Puts the filters in the correct format for the method.
-                filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + txtEditFilterValue.Text;
+                if (isDate)
+                {
+                    // The date gives problems.
+                    filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + dtpEditFilterValue.Value.ToShortDateString();
+                }
+                else if (isCategory)
+                {
+                    filter = cboEditFilterField.SelectedItem.ToString() + "ID#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + cboEditFilterValue.SelectedValue;
+                }
+                else
+                {
+                    filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + txtEditFilterValue.Text;
+                }
+                
                 // Checks which table is currently open to be filtered.
                 if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
                 {
@@ -403,6 +451,7 @@ namespace Project_Milestone_2
                 {
                     editSalesFilterList.Add(filter);
                     dgvEdit.DataSource = saleManager.FilterSales(editSalesFilterList);////////////////////////////////////////////////////////////
+                    AutoColumnsWidth(dgvEdit);
                 }
 
                 // Shows the user filters are applied.
@@ -417,7 +466,13 @@ namespace Project_Milestone_2
 
         private void BtnEditAdd_Click(object sender, EventArgs e)
         {
-            if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
+            if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
+            {
+                DisableEditForm();///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                pnlEditAddSaleDetail.Visible = true;
+                pnlEditAddSaleDetail.Enabled = true;
+            }
+            else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
                 DisableEditForm();
                 pnlEditAddItem.Visible = true;
@@ -425,10 +480,16 @@ namespace Project_Milestone_2
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
             {
-                // STILL HAVE TO DO//////////////////////////////////////////////////////////////////////////////////////
-                DisableEditForm();
-                pnlEditAddSale.Visible = true;
-                pnlEditAddSale.Enabled = true;
+                if (isAdmin)
+                {
+                    DisableEditForm();
+                    pnlEditAddSale.Visible = true;
+                    pnlEditAddSale.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Only admins can edit sales. Normal users have to do it through the 'Place Order'-page", "Edit sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -449,7 +510,10 @@ namespace Project_Milestone_2
                 int itemCategory = int.Parse(cboEditAddItemCategory.SelectedValue.ToString());                
                 int itemQuantity = int.Parse(nudEditAddItemQuantity.Value.ToString());
 
-                itemManager.AddItem(itemName, itemCategory, itemQuantity, itemPrice);
+                if (itemManager.AddItem(itemName, itemCategory, itemQuantity, itemPrice))
+                {
+                    MessageBox.Show("The record has been added");
+                }
                 // Refreshes values.
                 ShowItems();
             }
@@ -461,6 +525,36 @@ namespace Project_Milestone_2
             EnableEditForm();
             pnlEditAddItem.Visible = false;
             pnlEditAddItem.Enabled = false;
+        }
+
+        private void btnEditSaleAddCancel_Click(object sender, EventArgs e)
+        {
+            EnableEditForm();
+            pnlEditAddSale.Visible = false;
+            pnlEditAddSale.Enabled = false;
+        }
+
+        private void btnEditSaleAddSubmit_Click(object sender, EventArgs e)
+        {
+            DateTime date = dtpEditAddSaleDate.Value;
+            // Error check.
+            try
+            {
+                // Adds a blank record.
+                if (saleManager.AddBlankSale(date))
+                {
+                    MessageBox.Show("The record has been added");
+                }
+                // Refreshes.
+                ShowSales();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Invoke(ex);
+            }
+            EnableEditForm();
+            pnlEditAddSale.Visible = false;
+            pnlEditAddSale.Enabled = false;
         }
 
         private void BtnEditChange_Click(object sender, EventArgs e)
@@ -560,9 +654,16 @@ namespace Project_Milestone_2
                     }
                     else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
                     {
-                        saleManager.RemoveSale(ID);
-                        // Refreshes values.
-                        ShowSales();
+                        if (isAdmin)
+                        {
+                            saleManager.RemoveSale(ID);
+                            // Refreshes values.
+                            ShowSales();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Only admins can edit sales. Normal users have to do it through the 'Place Order'-page", "Edit sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -577,7 +678,7 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
-                ShowItems();
+                ShowItems();               
                 // Determines wether the detail-table is selected.
                 detailSelected = false;
                 lblSale.Visible = false;
@@ -594,24 +695,36 @@ namespace Project_Milestone_2
                 // Determines wether the detail-table is selected.
                 detailSelected = false;
             }
-            else if (cboEditCurrentTable.SelectedItem.ToString() == "Individual sales")
-            {
-                
-            }
-        }
-        private void btnEditSaleAddCancel_Click(object sender, EventArgs e)
-        {
-            EnableEditForm();///////////////////////////////////////////////////////////////////////////////
-            pnlEditAddSale.Visible = false;
-            pnlEditAddSale.Enabled = false;
         }
 
-        private void btnEditSaleAddSubmit_Click(object sender, EventArgs e)
+        // When the user wants to filter according to a strange input the input format has to change
+        private void cboEditFilterField_SelectedValueChanged(object sender, EventArgs e)
         {
-            string date = dtpEditAddSaleDate.Value.ToString();
-            EnableEditForm();///////////////////////////////////////////////////////////////////////////////
-            pnlEditAddSale.Visible = false;
-            pnlEditAddSale.Enabled = false;
+            // Resets the filter-panel before applying changes
+            txtEditFilterValue.Visible = true;
+            txtEditFilterValue.Enabled = true;
+            dtpEditFilterValue.Visible = false;
+            dtpEditFilterValue.Enabled = false;
+            cboEditFilterValue.Visible = false;
+            cboEditFilterValue.Enabled = false;
+            isDate = false;
+            isCategory = false;
+            if (cboEditFilterField.Text == "TimePlaced")
+            {
+                txtEditFilterValue.Visible = false;
+                txtEditFilterValue.Enabled = false;
+                dtpEditFilterValue.Visible = true;
+                dtpEditFilterValue.Enabled = true;
+                isDate = true;
+            }
+            else if (cboEditFilterField.Text == "Category")
+            {
+                txtEditFilterValue.Visible = false;
+                txtEditFilterValue.Enabled = false;
+                cboEditFilterValue.Visible = true;
+                cboEditFilterValue.Enabled = true;
+                isCategory = true;
+            }
         }
 
         // If a person double-clicks a sale, the sale-details will display
@@ -619,14 +732,25 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.Text == "Sales")
             {
-                //Show details
-                ShowItems();/////////////////////////////////////////////////////////////////////////////////
+                //Show details///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                try
+                {
+                    string saleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                    dgvEdit.DataSource = saleManager.ShowSaleDetails(saleID);
+                }
+                catch (Exception ex)
+                {
+                    ErrorHandler.Invoke(ex);
+                }
+                cboEditCurrentTable.Items.Add("Details");
+                cboEditCurrentTable.SelectedItem = "Details";
+                cboEditCurrentTable.Enabled = false;
+                // Give a way to go back.
                 btnSalesBack.Visible = true;
                 btnSalesBack.Enabled = true;
                 lblSale.Visible = false;
                 // Determines wether the detail-table is selected.
                 detailSelected = true;
-
             }
         }
 
@@ -638,6 +762,9 @@ namespace Project_Milestone_2
             lblSale.Visible = true;
             // Determines wether the detail-table is selected.
             detailSelected = false;
+            cboEditCurrentTable.Items.Remove("Details");
+            cboEditCurrentTable.SelectedItem = "Sales";
+            cboEditCurrentTable.Enabled = true;
         }
 
         // Methods used for validation by disabling/enabling certain inputs.
@@ -667,12 +794,11 @@ namespace Project_Milestone_2
         {
             if (editItemsFilterList.Count > 0)
             {
-                // Gets the actual number of records.
-                dgvEdit.DataSource = itemManager.ShowAllItems();
+                // Gets the actual number of records.                
                 editRecordCount = dgvEdit.Rows.Count - 1;
-
                 dgvEdit.DataSource = itemManager.FilterItems(editItemsFilterList);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
+                
             }
             else
             {
@@ -681,6 +807,7 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
             }
+            AutoColumnsWidth(dgvEdit);
         }
 
         // This method checks if a filter is already applied or not when refreshing the datagrid.
@@ -693,11 +820,13 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
 
                 dgvEdit.DataSource = saleManager.FilterSales(editSalesFilterList);
+                AutoColumnsWidth(dgvEdit);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
             }
             else
             {
                 dgvEdit.DataSource = saleManager.ShowAllSales();
+                AutoColumnsWidth(dgvEdit);
                 // Gets the actual number of records.
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();

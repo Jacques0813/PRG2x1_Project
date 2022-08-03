@@ -16,6 +16,117 @@ namespace Project_Milestone_2
             this.sqlConnection = sqlConnection;
         }
 
+        public bool AddBlankSale(DateTime time)
+        {
+            bool success = false;         
+            string cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES (0, '{time}')";
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = cmdString
+            };
+            try
+            {
+                int itemRows = sqlCommand.ExecuteNonQuery();      
+
+                if (itemRows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+
+        }
+
+        public bool AddSaleDetail(string saleID, string itemID, int quantity)
+        {
+            bool success = false;
+            string cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand
+                {
+                    Connection = sqlConnection,
+                    CommandText = cmdString
+                };
+                double price = 0;
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            price = (double)dataReader["Price"];
+                        }
+                    }
+                }
+                cmdString = $"INSERT INTO SaleItems (SaleID, ItemID, Price, Quantity) VALUES ({saleID}, {itemID}, {price}, {quantity})";
+                sqlCommand.CommandText = cmdString;
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+        }
+
+        public bool RemoveSaleDetail(string saleID, string itemID, int quantity, string price)
+        {
+            bool success = false;
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand
+                {
+                    Connection = sqlConnection,
+                    CommandText = cmdString
+                };
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+        }
+
+        public bool DeleteSaleDetail(string saleID, string itemID, int quantity, string price)
+        {
+            bool success = false;
+            string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID} AND Quantity = {quantity} AND Price = {price}";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand
+                {
+                    Connection = sqlConnection,
+                    CommandText = cmdString
+                };
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+        }
+
         public bool AddSale(List<int> quantities, List<double> prices, List<int> itemIDs)
         {
             bool success = false;
@@ -35,14 +146,15 @@ namespace Project_Milestone_2
                 int itemRows = sqlCommand.ExecuteNonQuery();
                 for (int i = 0; i < quantities.Count; i++)
                 {
-
                     cmdString = "UPDATE Items SET Quantity = Quantity - @quant WHERE ItemID = @id";
+                    sqlCommand.CommandText = cmdString;
                     sqlCommand.Parameters.AddWithValue("@id", itemIDs[i]);
                     sqlCommand.Parameters.AddWithValue("@quant", quantities[i]);
                     sqlCommand.ExecuteNonQuery();
                 }
 
                 cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES ({prices.Sum()}, #{DateTime.Now}#)";
+                sqlCommand.CommandText = cmdString;
                 int saleRows = sqlCommand.ExecuteNonQuery();
 
                 if (itemRows > 0 && saleRows > 0)
@@ -97,6 +209,17 @@ namespace Project_Milestone_2
             return ds.Tables[0];
         }
 
+        public DataTable ShowSaleDetails(String id)
+        {
+            string cmdString = $"SELECT I.ItemName, S.Price, S.Quantity FROM SaleItems S INNER JOIN Items I ON I.ItemID = S.ItemID WHERE S.SaleID = {id}";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);
+
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            return ds.Tables[0];
+        }
+
         public DataTable FilterSales(List<string> filters)
         {
             List<string> fields = new List<string>();
@@ -110,15 +233,20 @@ namespace Project_Milestone_2
                 // 2 = value
                 var splitFilters = filter.Split('#');
                 fields.Add(splitFilters[0]);
-                if (splitFilters[1].Equals("="))
+
+                
+
+                if (splitFilters[1].Equals("=") && !splitFilters[0].Equals("TimePlaced"))
                     signs.Add("LIKE");
-                else if (splitFilters[1].Equals("!="))
+                else if (splitFilters[1].Equals("!=") && !splitFilters[0].Equals("TimePlaced"))
                     signs.Add("NOT LIKE");
                 else
                     signs.Add(splitFilters[1]);
 
                 if ((splitFilters[1].Equals("LIKE") || splitFilters[1].Equals("NOT LIKE")) && !splitFilters[1].Equals("="))
                     values.Add($"%{splitFilters[2]}%");
+                else if (splitFilters[0].Equals("TimePlaced"))
+                    values.Add($"'{splitFilters[2]}'");
                 else
                     values.Add(splitFilters[2]);
             }
