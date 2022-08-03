@@ -98,7 +98,7 @@ namespace Project_Milestone_2
             return success;
         }
 
-        public bool RemoveSaleDetail(string saleID, string itemID)
+        public bool RemoveSaleDetail(string saleID, string ItemName)
         {
             bool success = false;
             string cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
