@@ -16,6 +16,31 @@ namespace Project_Milestone_2
             this.sqlConnection = sqlConnection;
         }
 
+        public bool AddBlankSale(DateTime time)
+        {
+            bool success = false;         
+            string cmdString = $"INSERT INTO Sale (TotalPrice, TimePlaced) VALUES (0, #{time}#)";
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = cmdString
+            };
+            try
+            {
+                int itemRows = sqlCommand.ExecuteNonQuery();      
+
+                if (itemRows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+
+        }
         public bool AddSale(List<int> quantities, List<double> prices, List<int> itemIDs)
         {
             bool success = false;
@@ -35,14 +60,15 @@ namespace Project_Milestone_2
                 int itemRows = sqlCommand.ExecuteNonQuery();
                 for (int i = 0; i < quantities.Count; i++)
                 {
-
                     cmdString = "UPDATE Items SET Quantity = Quantity - @quant WHERE ItemID = @id";
+                    sqlCommand.CommandText = cmdString;
                     sqlCommand.Parameters.AddWithValue("@id", itemIDs[i]);
                     sqlCommand.Parameters.AddWithValue("@quant", quantities[i]);
                     sqlCommand.ExecuteNonQuery();
                 }
 
                 cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES ({prices.Sum()}, #{DateTime.Now}#)";
+                sqlCommand.CommandText = cmdString;
                 int saleRows = sqlCommand.ExecuteNonQuery();
 
                 if (itemRows > 0 && saleRows > 0)
@@ -110,6 +136,9 @@ namespace Project_Milestone_2
                 // 2 = value
                 var splitFilters = filter.Split('#');
                 fields.Add(splitFilters[0]);
+
+                
+
                 if (splitFilters[1].Equals("="))
                     signs.Add("LIKE");
                 else if (splitFilters[1].Equals("!="))
@@ -119,6 +148,8 @@ namespace Project_Milestone_2
 
                 if ((splitFilters[1].Equals("LIKE") || splitFilters[1].Equals("NOT LIKE")) && !splitFilters[1].Equals("="))
                     values.Add($"%{splitFilters[2]}%");
+                else if (splitFilters[0].Equals("TimePlaced"))
+                    values.Add($"#{splitFilters[2]}#");
                 else
                     values.Add(splitFilters[2]);
             }
