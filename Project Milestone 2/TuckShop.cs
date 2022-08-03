@@ -154,6 +154,7 @@ namespace Project_Milestone_2
                 tab.Text = "";
             }
             Size = new Size(215, 266);
+            saleManager.AddSaleDetail("8", "4", 5);
         }
         // Navigation
         public void OpenMenu()
@@ -476,7 +477,7 @@ namespace Project_Milestone_2
                 {
                     MessageBox.Show("Only admins can edit sales. Normal users have to do it through the 'Place Order'-page", "Edit sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            }
+            }         
         }
 
         private void BtnEditAddItemCancel_Click(object sender, EventArgs e)

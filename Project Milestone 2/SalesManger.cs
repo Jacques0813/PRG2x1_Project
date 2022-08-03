@@ -41,6 +41,44 @@ namespace Project_Milestone_2
             return success;
 
         }
+
+        public bool AddSaleDetail(string saleID, string itemID, int quantity) 
+        {
+            bool success = false;
+            string cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";               
+            try
+            {                
+                SqlCommand sqlCommand = new SqlCommand
+                {
+                    Connection = sqlConnection,
+                    CommandText = cmdString
+                };
+                double price = 0;
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {                   
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            price = (double)dataReader["Price"];                         
+                        }
+                    }
+                }
+                cmdString = $"INSERT INTO SaleItems (SaleID, ItemID, Price, Quantity) VALUES ({saleID}, {itemID}, {price}, {quantity})";
+                sqlCommand.CommandText = cmdString;
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return success;
+        }
+
         public bool AddSale(List<int> quantities, List<double> prices, List<int> itemIDs)
         {
             bool success = false;
