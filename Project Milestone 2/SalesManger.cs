@@ -46,7 +46,7 @@ namespace Project_Milestone_2
         {
             bool success = false;
 
-            string cmdString = $"SELECT * FROM SaleItems WHERE SaleID LIKE '{saleID}' AND ItemID LIKE '{itemID}'";
+            string cmdString = $"SELECT * FROM SaleItems WHERE SaleID LIKE {saleID} AND ItemID LIKE {itemID}";
             SqlCommand sqlCommand = new SqlCommand
             {
                 Connection = sqlConnection,
