@@ -38,6 +38,28 @@ namespace Project_Milestone_2
         // Counts the number of records in Edit
         public int editRecordCount;
 
+        public static void AutoColumnsWidth(DataGridView dataGridView) 
+        {
+            // Set your desired AutoSize Mode:
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+         
+            // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                // Store Auto Sized Widths:
+                int colw = dataGridView.Columns[i].Width;
+
+                // Remove AutoSizing:
+                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                // Set Width to calculated AutoSize value:
+                dataGridView.Columns[i].Width = colw;
+            }
+        }
+
         public static void HandleError(Exception ex)
         {
             switch (ex.GetType().ToString())
@@ -237,6 +259,7 @@ namespace Project_Milestone_2
             if (cboEditCurrentTable.SelectedIndex == -1)
                 cboEditCurrentTable.SelectedIndex = cboEditCurrentTable.FindString("Items");
             dgvEdit.DataSource = itemManager.ShowAllItems();
+            AutoColumnsWidth(dgvEdit);
         }
 
         private void BtnViewRecords_Click(object sender, EventArgs e)
@@ -428,6 +451,7 @@ namespace Project_Milestone_2
                 {
                     editSalesFilterList.Add(filter);
                     dgvEdit.DataSource = saleManager.FilterSales(editSalesFilterList);////////////////////////////////////////////////////////////
+                    AutoColumnsWidth(dgvEdit);
                 }
 
                 // Shows the user filters are applied.
@@ -750,6 +774,7 @@ namespace Project_Milestone_2
             {
                 // Gets the actual number of records.
                 dgvEdit.DataSource = itemManager.ShowAllItems();
+                AutoColumnsWidth(dgvEdit);
                 editRecordCount = dgvEdit.Rows.Count - 1;
 
                 dgvEdit.DataSource = itemManager.FilterItems(editItemsFilterList);
@@ -774,11 +799,13 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
 
                 dgvEdit.DataSource = saleManager.FilterSales(editSalesFilterList);
+                AutoColumnsWidth(dgvEdit);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
             }
             else
             {
                 dgvEdit.DataSource = saleManager.ShowAllSales();
+                AutoColumnsWidth(dgvEdit);
                 // Gets the actual number of records.
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
