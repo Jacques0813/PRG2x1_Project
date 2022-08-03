@@ -122,7 +122,7 @@ namespace Project_Milestone_2
                 }
                   
                 cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
-               
+                sqlCommand.CommandText = cmdString;
                 int rows = sqlCommand.ExecuteNonQuery();
                 if (rows > 0)
                 {
