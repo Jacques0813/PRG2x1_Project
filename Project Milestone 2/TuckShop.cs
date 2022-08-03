@@ -46,19 +46,6 @@ namespace Project_Milestone_2
             {
                 dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-         
-            // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
-            for (int i = 0; i < dataGridView.Columns.Count; i++)
-            {
-                // Store Auto Sized Widths:
-                int colw = dataGridView.Columns[i].Width;
-
-                // Remove AutoSizing:
-                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-                // Set Width to calculated AutoSize value:
-                dataGridView.Columns[i].Width = colw;
-            }
         }
 
         public static void HandleError(Exception ex)
@@ -677,7 +664,7 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
-                ShowItems();
+                ShowItems();               
                 // Determines wether the detail-table is selected.
                 detailSelected = false;
                 lblSale.Visible = false;
@@ -785,13 +772,11 @@ namespace Project_Milestone_2
         {
             if (editItemsFilterList.Count > 0)
             {
-                // Gets the actual number of records.
-                dgvEdit.DataSource = itemManager.ShowAllItems();
-                AutoColumnsWidth(dgvEdit);
+                // Gets the actual number of records.                
                 editRecordCount = dgvEdit.Rows.Count - 1;
-
                 dgvEdit.DataSource = itemManager.FilterItems(editItemsFilterList);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
+                
             }
             else
             {
@@ -800,6 +785,7 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
             }
+            AutoColumnsWidth(dgvEdit);
         }
 
         // This method checks if a filter is already applied or not when refreshing the datagrid.
