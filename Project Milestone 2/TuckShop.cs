@@ -212,6 +212,7 @@ namespace Project_Milestone_2
         {
             tcMainScreen.SelectedTab = tpLogin;
             Size = new Size(215, 266);
+            isAdmin = false;
         }
 
         private void BtnPlaceOrder_Click(object sender, EventArgs e)

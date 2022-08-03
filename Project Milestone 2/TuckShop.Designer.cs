@@ -59,8 +59,6 @@ namespace Project_Milestone_2
             this.label11 = new System.Windows.Forms.Label();
             this.tpMenu = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.btnExitMenu = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -543,32 +541,12 @@ namespace Project_Milestone_2
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.btnExitMenu);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Location = new System.Drawing.Point(-4, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(258, 36);
             this.panel3.TabIndex = 14;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(177, 19);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 13);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "#Insert name#";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(177, 3);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Welcome";
             // 
             // btnExitMenu
             // 
@@ -2313,8 +2291,6 @@ namespace Project_Milestone_2
         private System.Windows.Forms.Button btnExitRegister;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnExitMenu;
         private System.Windows.Forms.TabPage tpOrder;
         private System.Windows.Forms.TabPage tpAdminEditLogin;
