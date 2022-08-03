@@ -570,7 +570,6 @@ namespace Project_Milestone_2
         {
             string itemID = cboEditAddSaleDetailItem.SelectedValue.ToString();
             int quantity = int.Parse(nudEditAddSaleDetailQuantity.Value.ToString());
-            bool hasDublicate = false;
             try
             {
                 // Adds a blank record.//////////////////////////////////////////////////////////////////////////////////////////////
@@ -578,15 +577,18 @@ namespace Project_Milestone_2
                 {
                     MessageBox.Show("The record has been added");
                 }
+                else
+                {
+                    MessageBox.Show("There might already be a record with this Item for this Sale. Rather than adding a new one, change the existing one", "Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 // Refreshes.
-                
+                dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
             }
             EnableEditForm();
-            dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
             pnlEditAddSaleDetail.Visible = false;
             pnlEditAddSaleDetail.Enabled = false;
         }
