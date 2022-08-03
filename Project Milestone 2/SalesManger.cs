@@ -72,6 +72,7 @@ namespace Project_Milestone_2
             {
                 int itemRows = sqlCommand.ExecuteNonQuery();
                 cmdString = "DELETE FROM Sales WHERE SaleID = @id";
+                sqlCommand.Parameters.AddWithValue("@id", id);
                 int saleRows = sqlCommand.ExecuteNonQuery();
                 if (itemRows > 0 && saleRows > 0)
                 {
