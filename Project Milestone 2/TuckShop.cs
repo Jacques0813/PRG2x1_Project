@@ -35,6 +35,7 @@ namespace Project_Milestone_2
         // Bools used in Edit page.
         public bool detailSelected;
         public bool isDate = false;
+        public bool isCategory = false;
         // Counts the number of records in Edit
         public int editRecordCount;
 
@@ -422,6 +423,10 @@ namespace Project_Milestone_2
                     // The date gives problems.
                     filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + dtpEditFilterValue.Value.ToShortDateString();
                 }
+                else if (isCategory)
+                {
+                    filter = cboEditFilterField.SelectedItem.ToString() + "ID#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + cboEditFilterValue.SelectedValue;
+                }
                 else
                 {
                     filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + txtEditFilterValue.Text;
@@ -679,9 +684,10 @@ namespace Project_Milestone_2
             }
         }
 
-        // When the user wants to filter according to a date the input format has to change
+        // When the user wants to filter according to a strange input the input format has to change
         private void cboEditFilterField_SelectedValueChanged(object sender, EventArgs e)
         {
+            // Resets the filter-panel before applying changes
             txtEditFilterValue.Visible = true;
             txtEditFilterValue.Enabled = true;
             dtpEditFilterValue.Visible = false;
@@ -689,6 +695,7 @@ namespace Project_Milestone_2
             cboEditFilterValue.Visible = false;
             cboEditFilterValue.Enabled = false;
             isDate = false;
+            isCategory = false;
             if (cboEditFilterField.Text == "TimePlaced")
             {
                 txtEditFilterValue.Visible = false;
@@ -703,6 +710,7 @@ namespace Project_Milestone_2
                 txtEditFilterValue.Enabled = false;
                 cboEditFilterValue.Visible = true;
                 cboEditFilterValue.Enabled = true;
+                isCategory = true;
             }
         }
 
@@ -711,8 +719,9 @@ namespace Project_Milestone_2
         {
             if (cboEditCurrentTable.Text == "Sales")
             {
-                //Show details
-                ShowItems();/////////////////////////////////////////////////////////////////////////////////
+                //Show details///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                string saleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                // Give a way to go back.
                 btnSalesBack.Visible = true;
                 btnSalesBack.Enabled = true;
                 lblSale.Visible = false;
