@@ -540,7 +540,10 @@ namespace Project_Milestone_2
             try
             {
                 // Adds a blank record.
-                saleManager.AddBlankSale(date);
+                if (saleManager.AddBlankSale(date))
+                {
+                    MessageBox.Show("The record has been added");
+                }
                 // Refreshes.
                 ShowSales();
             }
@@ -734,6 +737,7 @@ namespace Project_Milestone_2
             {
                 //Show details///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 string saleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                dgvEdit.DataSource = saleManager.ShowSaleDetails(saleID);
                 // Give a way to go back.
                 btnSalesBack.Visible = true;
                 btnSalesBack.Enabled = true;
