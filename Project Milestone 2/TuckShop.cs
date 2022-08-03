@@ -907,71 +907,144 @@ namespace Project_Milestone_2
         //===============================================================================================
 
 
-
         // Edit login for Admin page
-        //===============================================================================================
+        //-----------------------------------------------------------------------------------------------
+
+        private void btnAdminAdd_Click(object sender, EventArgs e)
+        {
+            panel22.Visible = true;
+            panel22.Enabled = true;
+
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string userEmail = textBox9.Text;
+                string userPassword = textBox12.Text;
+                string userName = textBox11.Text;
+                string userSurname = textBox10.Text;
+
+                userManager.Register(userEmail, userPassword, userName, userSurname);
+                // Refreshes values.
+                dgvAdmin.DataSource = userManager.ShowAll();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Invoke(ex);
+            }
+            panel22.Visible = false;
+            panel22.Enabled = false;
+        }
+
+        private void btnAdminRemove_Click(object sender, EventArgs e)
+        {
+            var row = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex];
+
+            string email = row.Cells[0].Value.ToString();
+            // Asks user if he/she is sure they want to delete the record and if Yes is selected, deletes appropriate record.
+            var result = MessageBox.Show("Are you sure you want to delete the record selcted? " +
+                                    row.Cells[0].Value.ToString() + "\nEmail: " +
+                                    row.Cells[1].Value.ToString() + "\nPassword: " +
+                                    row.Cells[2].Value.ToString() + "\nName: " +
+                                    row.Cells[3].Value.ToString() + "\nSurname: " +
+                                    row.Cells[4].Value.ToString(), "Remove record", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                // Error check.
+                try
+                {
+                    //userManager.RemoveUser(email);
+                    //Refreshes values.
+                    dgvAdmin.DataSource = userManager.ShowAll();
+                }
+                catch (Exception ex)
+                {
+                    ErrorHandler.Invoke(ex);
+                }
+            }
+        }
+
+        private void btnAdminChange_Click(object sender, EventArgs e)
+        {
+            //Change User Details
+            dgvAdmin.Enabled = false;
+            panel21.Visible = true;
+            panel21.Enabled = true;
+
+            //userManager.ChangeDetail(userDetail,newValue);
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Are you sure you want to add these details?", "Information", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                textBox2.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                textBox7.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                textBox6.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                textBox8.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[3].Value.ToString();
+            }
+            else if (result == DialogResult.No)
+            {
+
+            }
+        }
+
         private void BtnExitAdminEditLogin_Click(object sender, EventArgs e)
         {
             OpenMenu();
-            editItemsFilterList.Clear();
         }
 
-
+        private void BtnAdminFilter_Click(object sender, EventArgs e)
+        {
+            pnlAdminFilter.Visible = true;
+        }
 
         private void BtnCancelAdminFilter_Click(object sender, EventArgs e)
         {
-            //EnableForm();
             pnlAdminFilter.Visible = false;
-            pnlAdminFilter.Enabled = false;
         }
 
         private void BtnRemoveAdminFilters_Click(object sender, EventArgs e)
         {
-            //EnableForm();
-            editItemsFilterList.Clear();
-
             pnlAdminFilter.Visible = false;
-            pnlAdminFilter.Enabled = false;
         }
 
         private void BtnApplyAdminFilter_Click(object sender, EventArgs e)
         {
-            string value;
-            double numTest;
-
-            //EnableForm();
             pnlAdminFilter.Visible = false;
-            pnlAdminFilter.Enabled = false;
-
-            // This checks correctness of formats.
-            try
-            {
-                //numTest = double.Parse(textBox3.Text);
-
-                //value = numTest.ToString();
-            }
-            catch (Exception)
-            {
-                if ((comboBox5.SelectedItem.ToString() == "LIKE") || (comboBox5.SelectedItem.ToString() == "NOT LIKE"))
-                {
-                    //value = "'%" + textBox3.Text + "%'";
-                }
-                else
-                {
-                    //value = "'" + textBox3.Text + "'";
-                }
-            }
         }
-        //===============================================================================================
+        //-----------------------------------------------------------------------------------------------
 
 
 
         // Edit login for normal users page
-        //===============================================================================================
+        //-----------------------------------------------------------------------------------------------
         private void BtnExitEditLogin_Click(object sender, EventArgs e)
         {
             OpenMenu();
         }
-        //===============================================================================================
+
+        private void btnUserEmailChange_Click(object sender, EventArgs e)
+        {
+            //UserDetail.Email.Equals(userManager.userEmail);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            panel21.Visible = false;
+            panel21.Enabled = false;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel22.Visible = false;
+            panel22.Enabled = false;
+        }
+
+        //-----------------------------------------------------------------------------------------------
+
     }
 }
