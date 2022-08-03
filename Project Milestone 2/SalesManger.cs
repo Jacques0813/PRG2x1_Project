@@ -147,9 +147,7 @@ namespace Project_Milestone_2
                     signs.Add(splitFilters[1]);
 
                 if ((splitFilters[1].Equals("LIKE") || splitFilters[1].Equals("NOT LIKE")) && !splitFilters[1].Equals("="))
-                    values.Add($"%{splitFilters[2]}%");
-                else if (splitFilters[0].Equals("TimePlaced"))
-                    values.Add($"#{splitFilters[2]}#");
+                    values.Add($"%{splitFilters[2]}%");          
                 else
                     values.Add(splitFilters[2]);
             }
