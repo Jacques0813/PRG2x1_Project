@@ -45,14 +45,33 @@ namespace Project_Milestone_2
         public bool AddSaleDetail(string saleID, string itemID, int quantity)
         {
             bool success = false;
-            string cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";
+
+            string cmdString = $"SELECT * FROM SaleItems WHERE SaleID LIKE '{saleID}' AND ItemID LIKE '{itemID}'";
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = cmdString
+            };
             try
             {
-                SqlCommand sqlCommand = new SqlCommand
+                sqlCommand.ExecuteNonQuery();
+
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
-                    Connection = sqlConnection,
-                    CommandText = cmdString
-                };
+                    if (dataReader.HasRows)
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+
+            cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";
+            try
+            {
                 double price = 0;
                 using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
