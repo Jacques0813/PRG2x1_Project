@@ -462,7 +462,6 @@ namespace Project_Milestone_2
                     editSalesFilterList.Add(filter);
                     // Applies the filter (the list has an added filter so the filter method runs).
                     ShowSales();
-                    AutoColumnsWidth(dgvEdit);
                 }
 
                 // Shows the user filters are applied.
@@ -477,6 +476,7 @@ namespace Project_Milestone_2
 
         private void BtnEditAdd_Click(object sender, EventArgs e)
         {
+            // Determines what Add-form to show.
             if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
             {
                 DisableEditForm();
@@ -914,6 +914,7 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
             }
+            // Makes columns fit datagrid size.
             AutoColumnsWidth(dgvEdit);
         }
 
@@ -927,17 +928,17 @@ namespace Project_Milestone_2
                 editRecordCount = dgvEdit.Rows.Count - 1;
 
                 dgvEdit.DataSource = saleManager.FilterSales(editSalesFilterList);
-                AutoColumnsWidth(dgvEdit);
                 txtEditRecordCount.Text = (dgvEdit.Rows.Count - 1).ToString() + " of " + editRecordCount.ToString();
             }
             else
             {
                 dgvEdit.DataSource = saleManager.ShowAllSales();
-                AutoColumnsWidth(dgvEdit);
                 // Gets the actual number of records.
                 editRecordCount = dgvEdit.Rows.Count - 1;
                 txtEditRecordCount.Text = editRecordCount.ToString();
             }
+            // Makes columns fit datagrid size.
+            AutoColumnsWidth(dgvEdit);
         }
         //===============================================================================================
 
