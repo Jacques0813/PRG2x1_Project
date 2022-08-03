@@ -913,83 +913,83 @@ namespace Project_Milestone_2
 
         private void btnAdminAdd_Click(object sender, EventArgs e)
         {
-            panel22.Visible = true;
-            panel22.Enabled = true;
+            //panel22.Visible = true;
+            //panel22.Enabled = true;
 
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string userEmail = textBox9.Text;
-                string userPassword = textBox12.Text;
-                string userName = textBox11.Text;
-                string userSurname = textBox10.Text;
+            //try
+            //{
+            //    string userEmail = textBox9.Text;
+            //    string userPassword = textBox12.Text;
+            //    string userName = textBox11.Text;
+            //    string userSurname = textBox10.Text;
 
-                userManager.Register(userEmail, userPassword, userName, userSurname);
-                // Refreshes values.
-                dgvAdmin.DataSource = userManager.ShowAll();
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.Invoke(ex);
-            }
-            panel22.Visible = false;
-            panel22.Enabled = false;
+            //    userManager.Register(userEmail, userPassword, userName, userSurname);
+            //    // Refreshes values.
+            //    dgvAdmin.DataSource = userManager.ShowAll();
+            //}
+            //catch (Exception ex)
+            //{
+            //    ErrorHandler.Invoke(ex);
+            //}
+            //panel22.Visible = false;
+            //panel22.Enabled = false;
         }
 
         private void btnAdminRemove_Click(object sender, EventArgs e)
         {
-            var row = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex];
+            //var row = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex];
 
-            string email = row.Cells[0].Value.ToString();
-            // Asks user if he/she is sure they want to delete the record and if Yes is selected, deletes appropriate record.
-            var result = MessageBox.Show("Are you sure you want to delete the record selcted? " +
-                                    row.Cells[0].Value.ToString() + "\nEmail: " +
-                                    row.Cells[1].Value.ToString() + "\nPassword: " +
-                                    row.Cells[2].Value.ToString() + "\nName: " +
-                                    row.Cells[3].Value.ToString() + "\nSurname: " +
-                                    row.Cells[4].Value.ToString(), "Remove record", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                // Error check.
-                try
-                {
-                    //userManager.RemoveUser(email);
-                    //Refreshes values.
-                    dgvAdmin.DataSource = userManager.ShowAll();
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.Invoke(ex);
-                }
-            }
+            //string email = row.Cells[0].Value.ToString();
+            //// Asks user if he/she is sure they want to delete the record and if Yes is selected, deletes appropriate record.
+            //var result = MessageBox.Show("Are you sure you want to delete the record selcted? " +
+            //                        row.Cells[0].Value.ToString() + "\nEmail: " +
+            //                        row.Cells[1].Value.ToString() + "\nPassword: " +
+            //                        row.Cells[2].Value.ToString() + "\nName: " +
+            //                        row.Cells[3].Value.ToString() + "\nSurname: " +
+            //                        row.Cells[4].Value.ToString(), "Remove record", MessageBoxButtons.YesNo);
+            //if (result == DialogResult.Yes)
+            //{
+            //    // Error check.
+            //    try
+            //    {
+            //        //userManager.RemoveUser(email);
+            //        //Refreshes values.
+            //        dgvAdmin.DataSource = userManager.ShowAll();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ErrorHandler.Invoke(ex);
+            //    }
+            //}
         }
 
         private void btnAdminChange_Click(object sender, EventArgs e)
         {
-            //Change User Details
-            dgvAdmin.Enabled = false;
-            panel21.Visible = true;
-            panel21.Enabled = true;
+            ////Change User Details
+            //dgvAdmin.Enabled = false;
+            //panel21.Visible = true;
+            //panel21.Enabled = true;
 
-            //userManager.ChangeDetail(userDetail,newValue);
+            ////userManager.ChangeDetail(userDetail,newValue);
         }
         private void button5_Click(object sender, EventArgs e)
         {
 
-            DialogResult result = MessageBox.Show("Are you sure you want to add these details?", "Information", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                textBox2.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                textBox7.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[1].Value.ToString();
-                textBox6.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[2].Value.ToString();
-                textBox8.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[3].Value.ToString();
-            }
-            else if (result == DialogResult.No)
-            {
+            //DialogResult result = MessageBox.Show("Are you sure you want to add these details?", "Information", MessageBoxButtons.YesNo);
+            //if (result == DialogResult.Yes)
+            //{
+            //    textBox2.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            //    textBox7.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            //    textBox6.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            //    textBox8.Text = dgvAdmin.Rows[dgvAdmin.CurrentCell.RowIndex].Cells[3].Value.ToString();
+            //}
+            //else if (result == DialogResult.No)
+            //{
 
-            }
+            //}
         }
 
         private void BtnExitAdminEditLogin_Click(object sender, EventArgs e)
@@ -1035,14 +1035,14 @@ namespace Project_Milestone_2
         private void button4_Click(object sender, EventArgs e)
         {
 
-            panel21.Visible = false;
-            panel21.Enabled = false;
+            //panel21.Visible = false;
+            //panel21.Enabled = false;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            panel22.Visible = false;
-            panel22.Enabled = false;
+            //panel22.Visible = false;
+            //panel22.Enabled = false;
         }
 
         //-----------------------------------------------------------------------------------------------
