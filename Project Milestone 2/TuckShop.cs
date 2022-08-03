@@ -140,15 +140,23 @@ namespace Project_Milestone_2
             cboEditChangeItemCategory.DataSource = itemManager.FillCategories();
             cboEditChangeItemCategory.DisplayMember = "Category";
             cboEditChangeItemCategory.ValueMember = "CategoryID";
+
             cboEditAddItemCategory.DataSource = itemManager.FillCategories();
             cboEditAddItemCategory.DisplayMember = "Category";
             cboEditAddItemCategory.ValueMember = "CategoryID";
+
             cboEditFilterValue.DataSource = itemManager.FillCategories();
             cboEditFilterValue.DisplayMember = "Category";
-            cboEditFilterValue.ValueMember = "CategoryID";            
+            cboEditFilterValue.ValueMember = "CategoryID";
+
+            cboEditAddSaleDetailItem.DataSource = itemManager.FillNames();
+            cboEditAddSaleDetailItem.DisplayMember = "ItemName";
+            cboEditAddSaleDetailItem.ValueMember = "ItemID";
+
             cboSaleItems.DataSource = itemManager.FillNames();
             cboSaleItems.DisplayMember = "ItemName";
             cboSaleItems.ValueMember = "ItemID";
+
             foreach (TabPage tab in tcMainScreen.TabPages)
             {
                 tab.Text = "";
