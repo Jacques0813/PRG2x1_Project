@@ -32,8 +32,9 @@ namespace Project_Milestone_2
         static UserManager userManager;
         static SalesManger saleManager;
         public bool isAdmin;
-        // Bool used in Edit page.
+        // Bools used in Edit page.
         public bool detailSelected;
+        public bool isDate = false;
         // Counts the number of records in Edit
         public int editRecordCount;
 
@@ -165,7 +166,7 @@ namespace Project_Milestone_2
             string message = "Email or Password incorrect.";
             if (userManager.Login(email, password))
             {
-                if (email == "Admin")
+                if (email == "ADMIN")
                 {
                     isAdmin = true;
                 }
@@ -243,12 +244,18 @@ namespace Project_Milestone_2
 
         private void BtnEditLogin_Click(object sender, EventArgs e)
         {
-            //We have to check if the user is an admin
-            tcMainScreen.SelectedTab = tpAdminEditLogin;
-            Size = new Size(968, 561);
+            // We have to check if the user is an admin.
+            if (isAdmin)
+            {
+                tcMainScreen.SelectedTab = tpAdminEditLogin;
+                Size = new Size(968, 561);
+            }
+            else
+            {
 
-            //tcMainScreen.SelectedTab = tpEditLogin;
-            //Size = new Size(324, 266);
+                tcMainScreen.SelectedTab = tpEditLogin;
+                Size = new Size(324, 266);
+            }
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -340,6 +347,10 @@ namespace Project_Milestone_2
             DisableEditForm();
             pnlEditFilter.Visible = true;
             pnlEditFilter.Enabled = true;
+            txtEditFilterValue.Visible = true;
+            txtEditFilterValue.Enabled = true;
+            dtpEditFilterValue.Visible = false;
+            dtpEditFilterValue.Enabled = false;
         }
 
         private void BtnEditFiltersCancel_Click(object sender, EventArgs e)
@@ -391,7 +402,16 @@ namespace Project_Milestone_2
             try
             {
                 // Puts the filters in the correct format for the method.
-                filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + txtEditFilterValue.Text;
+                if (isDate)
+                {
+                    // The date gives problems.
+                    filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + dtpEditFilterValue.Value.ToShortDateString();
+                }
+                else
+                {
+                    filter = cboEditFilterField.SelectedItem.ToString() + "#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + txtEditFilterValue.Text;
+                }
+                
                 // Checks which table is currently open to be filtered.
                 if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
                 {
@@ -426,9 +446,16 @@ namespace Project_Milestone_2
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
             {
                 // STILL HAVE TO DO//////////////////////////////////////////////////////////////////////////////////////
-                DisableEditForm();
-                pnlEditAddSale.Visible = true;
-                pnlEditAddSale.Enabled = true;
+                if (isAdmin)
+                {
+                    DisableEditForm();
+                    pnlEditAddSale.Visible = true;
+                    pnlEditAddSale.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Only admins can edit sales. Normal users have to do it through the 'Place Order'-page", "Edit sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -560,9 +587,16 @@ namespace Project_Milestone_2
                     }
                     else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
                     {
-                        saleManager.RemoveSale(ID);
-                        // Refreshes values.
-                        ShowSales();
+                        if (isAdmin)
+                        {
+                            saleManager.RemoveSale(ID);
+                            // Refreshes values.
+                            ShowSales();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Only admins can edit sales. Normal users have to do it through the 'Place Order'-page", "Edit sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -599,6 +633,28 @@ namespace Project_Milestone_2
                 
             }
         }
+
+        // When the user wants to filter according to a date the input format has to change
+        private void cboEditFilterField_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cboEditFilterField.Text == "TimePlaced")
+            {
+                txtEditFilterValue.Visible = false;
+                txtEditFilterValue.Enabled = false;
+                dtpEditFilterValue.Visible = true;
+                dtpEditFilterValue.Enabled = true;
+                isDate = true;
+            }
+            else
+            {
+                txtEditFilterValue.Visible = true;
+                txtEditFilterValue.Enabled = true;
+                dtpEditFilterValue.Visible = false;
+                dtpEditFilterValue.Enabled = false;
+                isDate = false;
+            }
+        }
+
         private void btnEditSaleAddCancel_Click(object sender, EventArgs e)
         {
             EnableEditForm();///////////////////////////////////////////////////////////////////////////////

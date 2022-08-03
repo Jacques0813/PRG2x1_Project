@@ -215,6 +215,7 @@ namespace Project_Milestone_2
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnExitEditLogin = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
+            this.dtpEditFilterValue = new System.Windows.Forms.DateTimePicker();
             this.tcMainScreen.SuspendLayout();
             this.tpLogin.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -672,7 +673,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSale.Controls.Add(this.btnEditSaleAddSubmit);
             this.pnlEditAddSale.Controls.Add(this.label41);
             this.pnlEditAddSale.Enabled = false;
-            this.pnlEditAddSale.Location = new System.Drawing.Point(364, 59);
+            this.pnlEditAddSale.Location = new System.Drawing.Point(636, 65);
             this.pnlEditAddSale.Name = "pnlEditAddSale";
             this.pnlEditAddSale.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSale.TabIndex = 91;
@@ -759,6 +760,7 @@ namespace Project_Milestone_2
             // 
             this.pnlEditFilter.BackColor = System.Drawing.Color.PowderBlue;
             this.pnlEditFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlEditFilter.Controls.Add(this.dtpEditFilterValue);
             this.pnlEditFilter.Controls.Add(this.gboComparison);
             this.pnlEditFilter.Controls.Add(this.label50);
             this.pnlEditFilter.Controls.Add(this.label20);
@@ -964,6 +966,7 @@ namespace Project_Milestone_2
             this.cboEditFilterField.Name = "cboEditFilterField";
             this.cboEditFilterField.Size = new System.Drawing.Size(156, 21);
             this.cboEditFilterField.TabIndex = 0;
+            this.cboEditFilterField.SelectedValueChanged += new System.EventHandler(this.cboEditFilterField_SelectedValueChanged);
             // 
             // pnlEditChangeItem
             // 
@@ -2174,6 +2177,16 @@ namespace Project_Milestone_2
             this.label31.TabIndex = 15;
             this.label31.Text = "Edit User Details";
             // 
+            // dtpEditFilterValue
+            // 
+            this.dtpEditFilterValue.Enabled = false;
+            this.dtpEditFilterValue.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEditFilterValue.Location = new System.Drawing.Point(102, 148);
+            this.dtpEditFilterValue.Name = "dtpEditFilterValue";
+            this.dtpEditFilterValue.Size = new System.Drawing.Size(156, 20);
+            this.dtpEditFilterValue.TabIndex = 13;
+            this.dtpEditFilterValue.Visible = false;
+            // 
             // FrmTuckShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2440,6 +2453,7 @@ namespace Project_Milestone_2
         private System.Windows.Forms.Button btnEditSaleAddCancel;
         private System.Windows.Forms.Button btnEditSaleAddSubmit;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DateTimePicker dtpEditFilterValue;
     }
 }
 
