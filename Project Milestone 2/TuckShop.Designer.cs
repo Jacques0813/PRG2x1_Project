@@ -328,6 +328,7 @@ namespace Project_Milestone_2
             this.txbLoginPassword.Name = "txbLoginPassword";
             this.txbLoginPassword.Size = new System.Drawing.Size(100, 20);
             this.txbLoginPassword.TabIndex = 9;
+            this.txbLoginPassword.Text = "1234";
             // 
             // txbLoginEmail
             // 
@@ -335,6 +336,7 @@ namespace Project_Milestone_2
             this.txbLoginEmail.Name = "txbLoginEmail";
             this.txbLoginEmail.Size = new System.Drawing.Size(100, 20);
             this.txbLoginEmail.TabIndex = 8;
+            this.txbLoginEmail.Text = "ADMIN";
             // 
             // btnNavigateToRegister
             // 
