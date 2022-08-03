@@ -569,6 +569,7 @@ namespace Project_Milestone_2
             pnlEditAddSaleDetail.Visible = false;
             pnlEditAddSaleDetail.Enabled = false;
             btnSalesBack.Enabled = true;
+            btnExitEdit.Enabled = false;
         }
 
         private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)
@@ -593,6 +594,7 @@ namespace Project_Milestone_2
                 ErrorHandler.Invoke(ex);
             }
             EnableEditForm();
+            btnExitEdit.Enabled = false;
             pnlEditAddSaleDetail.Visible = false;
             pnlEditAddSaleDetail.Enabled = false;
             btnSalesBack.Enabled = true;
@@ -600,7 +602,14 @@ namespace Project_Milestone_2
 
         private void BtnEditChange_Click(object sender, EventArgs e)
         {
-            if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
+            if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
+            {
+                DisableEditForm();
+                pnlEditChangeSaleDetail.Visible = true;
+                pnlEditChangeSaleDetail.Enabled = true;
+                btnSalesBack.Enabled = false;
+            }
+            else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
                 DisableEditForm();
                 pnlEditChangeItem.Visible = true;
@@ -669,6 +678,20 @@ namespace Project_Milestone_2
             EnableEditForm();
             pnlEditChangeItem.Visible = false;
             pnlEditChangeItem.Enabled = false;
+        }
+
+        private void btnEditChangeSaleDetailCancel_Click(object sender, EventArgs e)
+        {
+            EnableEditForm();
+            pnlEditChangeSaleDetail.Visible = false;
+            pnlEditChangeSaleDetail.Enabled = false;
+            btnSalesBack.Enabled = true;
+            btnExitEdit.Enabled = false;
+        }
+
+        private void btnEditChangeSaleDetailSubmit_Click(object sender, EventArgs e)
+        {
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
         private void BtnEditRemove_Click(object sender, EventArgs e)
