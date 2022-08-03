@@ -110,14 +110,14 @@ namespace Project_Milestone_2
             };
             try
             {
-                string itemID = "";
+                int itemID = 0;
                 using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
                     if (dataReader.HasRows)
                     {
                         while (dataReader.Read())
                         {
-                            itemID = (string)dataReader["ItemID"];
+                            itemID = (int)dataReader["ItemID"];
                         }
                     }
                 }
