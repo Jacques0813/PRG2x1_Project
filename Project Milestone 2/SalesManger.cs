@@ -123,6 +123,17 @@ namespace Project_Milestone_2
             return ds.Tables[0];
         }
 
+        public DataTable ShowSaleDetails(String id)
+        {
+            string cmdString = $"SELECT * FROM SaleItems WHERE SaleID = {id}";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmdString, sqlConnection);
+
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            return ds.Tables[0];
+        }
+
         public DataTable FilterSales(List<string> filters)
         {
             List<string> fields = new List<string>();
