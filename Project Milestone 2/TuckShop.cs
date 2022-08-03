@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace Project_Milestone_2
 {
+    //JAQUES ANSWER ME!!!
     // Delegate to be used as container for event
     public delegate void EventHandler(Exception exception);
     public partial class FrmTuckShop : Form
