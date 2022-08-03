@@ -474,6 +474,7 @@ namespace Project_Milestone_2
                 DisableEditForm();
                 pnlEditAddSaleDetail.Visible = true;
                 pnlEditAddSaleDetail.Enabled = true;
+                btnSalesBack.Enabled = false;
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
             {
@@ -565,6 +566,7 @@ namespace Project_Milestone_2
             EnableEditForm();
             pnlEditAddSaleDetail.Visible = false;
             pnlEditAddSaleDetail.Enabled = false;
+            btnSalesBack.Enabled = true;
         }
 
         private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)
@@ -592,6 +594,7 @@ namespace Project_Milestone_2
             EnableEditForm();
             pnlEditAddSaleDetail.Visible = false;
             pnlEditAddSaleDetail.Enabled = false;
+            btnSalesBack.Enabled = true;
         }
 
         private void BtnEditChange_Click(object sender, EventArgs e)
