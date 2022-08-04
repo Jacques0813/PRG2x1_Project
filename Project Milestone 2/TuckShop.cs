@@ -381,12 +381,14 @@ namespace Project_Milestone_2
                 MessageBox.Show(message);
             }
             
-            richTextBox1.Text = cBox + ' ' + nUD1 + "has been removed";
+            richTextBox1.Text = cBox + ' ' + nUD1 + " has been removed";
         }
 
         private void BtnOrderCheckout(object sender, EventArgs e)
         {
+            string message = "Checkout has been applied";
             saleManager.AddSale(quantities, prices, itemID);
+            MessageBox.Show(message);
         }
         //===============================================================================================
 
