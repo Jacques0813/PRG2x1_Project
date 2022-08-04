@@ -697,7 +697,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSale.Controls.Add(this.btnEditSaleAddSubmit);
             this.pnlEditAddSale.Controls.Add(this.label41);
             this.pnlEditAddSale.Enabled = false;
-            this.pnlEditAddSale.Location = new System.Drawing.Point(357, 37);
+            this.pnlEditAddSale.Location = new System.Drawing.Point(357, 51);
             this.pnlEditAddSale.Name = "pnlEditAddSale";
             this.pnlEditAddSale.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSale.TabIndex = 91;
@@ -786,6 +786,7 @@ namespace Project_Milestone_2
             // 
             // cboEditAddSaleDetailItem
             // 
+            this.cboEditAddSaleDetailItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEditAddSaleDetailItem.FormattingEnabled = true;
             this.cboEditAddSaleDetailItem.Location = new System.Drawing.Point(86, 38);
             this.cboEditAddSaleDetailItem.Name = "cboEditAddSaleDetailItem";
