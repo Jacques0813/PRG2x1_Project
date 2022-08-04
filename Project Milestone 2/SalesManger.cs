@@ -9,23 +9,6 @@ namespace Project_Milestone_2
 {
     internal class SalesManger
     {
-        //How does all this work you ask?
-//       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠴⠒⠒⠲⠤⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠋⠀⠀⠀⠀⠠⢚⣂⡀⠈⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡎⡴⠆⠀⠀⠀⠀⠀⢎⠐⢟⡇⠀⠈⢣⣠⠞⠉⠉⠑⢄⠀⠀⣰⠋⡯⠗⣚⣉⣓⡄
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢠⢞⠉⡆⠀⠀⠀⠀⠀⠓⠋⠀⠀⠀⠀⢿⠀⠀⠀⠀⠈⢧⠀⢹⣠⠕⠘⢧⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠘⠮⠔⠁⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠸⡀⠀⠀⠀⠀⠈⣇⠀⢳⠀⠀⠘⡆⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠋⠉⠓⠦⣧⠀⠀⠀⠀⢦⠤⠤⠖⠋⠇⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠸⡄⠈⡇⠀⠀⢹⡀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⠀⠀⠀⠀⠙⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠈⣆⠀⠀⠀⢱⠀⡇⠀⠀⠀⡇⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⠀⠀⠀⠀⠀⠘⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠸⡄⠀⠀⠀⠳⠃⠀⠀⠀⡇⠀
-//⠀⠀⠀⠀⠀⢠⢏⠉⢳⡀⠀⠀⢹⠀⠀⠀⠀⢠⠀⠀⠀⠑⠤⣄⣀⡀⠀⠀⠀⠀⠀⣀⡤⠚⠀⠀⠀⠀⠀⢸⢢⡀⠀⠀⠀⠀⠀⢰⠁⠀
-//⠀⠀⣀⣤⡞⠓⠉⠁⠀⢳⠀⠀⢸⠀⠀⠀⠀⢸⡆⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⢸⠀⠙⠦⣤⣀⣀⡤⠃⠀⠀
-//⠀⣰⠗⠒⣚⠀⢀⡤⠚⠉⢳⠀⠈⡇⠀⠀⠀⢸⡧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠸⠵⡾⠋⠉⠉⡏⠀⠀⠀⠈⠣⣀⣳⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠹⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠳⡄⠀⠀⠀⠀⠀⠀⠀⡰⠁⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⠲⠤⠤⠤⠴⠚⠁⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         readonly SqlConnection sqlConnection;
 
         public SalesManger(SqlConnection sqlConnection)
@@ -42,19 +25,14 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
-            {
-                int itemRows = sqlCommand.ExecuteNonQuery();      
+        
+            int itemRows = sqlCommand.ExecuteNonQuery();      
 
-                if (itemRows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
+            if (itemRows > 0)
             {
-                MessageBox.Show(e.Message);
+                success = true;
             }
+         
             return success;
 
         }
@@ -69,42 +47,35 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
-            {
-                sqlCommand.ExecuteNonQuery();
+           sqlCommand.ExecuteNonQuery();
 
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            {
+                if (dataReader.HasRows)
                 {
-                    if (dataReader.HasRows)
-                    {
-                        return false;
-                    }
-                }          
-                cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";
-         
-                double price = 0;
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                {
-                    if (dataReader.HasRows)
-                    {
-                        while (dataReader.Read())
-                        {
-                            price = (double)dataReader["Price"];
-                        }
-                    }
+                    return false;
                 }
-                price *= quantity;
-                cmdString = $"INSERT INTO SaleItems (SaleID, ItemID, Price, Quantity) VALUES ({saleID}, {itemID}, {price}, {quantity})";
-                sqlCommand.CommandText = cmdString;
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
+            }          
+            cmdString = $"SELECT Price FROM Items WHERE ItemID = {itemID}";
+         
+            double price = 0;
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            {
+                if (dataReader.HasRows)
                 {
-                    success = true;
+                    while (dataReader.Read())
+                    {
+                        price = (double)dataReader["Price"];
+                    }
                 }
             }
-            catch (SqlException e)
+            price *= quantity;
+            cmdString = $"INSERT INTO SaleItems (SaleID, ItemID, Price, Quantity) VALUES ({saleID}, {itemID}, {price}, {quantity})";
+            sqlCommand.CommandText = cmdString;
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                MessageBox.Show(e.Message);
+                success = true;
             }
             return success;
         }
@@ -118,31 +89,25 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
+ 
+            int itemID = 0;
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
             {
-                int itemID = 0;
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                if (dataReader.HasRows)
                 {
-                    if (dataReader.HasRows)
+                    while (dataReader.Read())
                     {
-                        while (dataReader.Read())
-                        {
-                            itemID = (int)dataReader["ItemID"];
-                        }
+                        itemID = (int)dataReader["ItemID"];
                     }
                 }
-                  
-                cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
-                sqlCommand.CommandText = cmdString;
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
             }
-            catch (SqlException e)
+                  
+            cmdString = $"DELETE FROM SaleItems WHERE SaleID = {saleID} AND ItemID = {itemID}";
+            sqlCommand.CommandText = cmdString;
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                MessageBox.Show(e.Message);
+                success = true;
             }
             return success;
         }
@@ -156,31 +121,25 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
+
+            double price = 0;
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
             {
-                double price = 0;
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                if (dataReader.HasRows)
                 {
-                    if (dataReader.HasRows)
-                    {
-                        while (dataReader.Read())
-                        {                           
-                            price = (double)dataReader["Price"];
-                        }
+                    while (dataReader.Read())
+                    {                           
+                        price = (double)dataReader["Price"];
                     }
                 }
-                price *= quantity;
-                cmdString = $"UPDATE SaleItems SET SaleID = {saleID}, ItemID = {id}, Quantity = {quantity}, Price = {price} WHERE SaleID = {saleID} AND ItemID = {id}";
-                sqlCommand.CommandText = cmdString;
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
             }
-            catch (SqlException e)
+            price *= quantity;
+            cmdString = $"UPDATE SaleItems SET SaleID = {saleID}, ItemID = {id}, Quantity = {quantity}, Price = {price} WHERE SaleID = {saleID} AND ItemID = {id}";
+            sqlCommand.CommandText = cmdString;
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                MessageBox.Show(e.Message);
+                success = true;
             }
             return success;
         }
@@ -199,31 +158,25 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
+            int itemRows = sqlCommand.ExecuteNonQuery();
+            for (int i = 0; i < quantities.Count; i++)
             {
-                int itemRows = sqlCommand.ExecuteNonQuery();
-                for (int i = 0; i < quantities.Count; i++)
-                {
-                    cmdString = "UPDATE Items SET Quantity = Quantity - @quant WHERE ItemID = @id";
-                    sqlCommand.CommandText = cmdString;
-                    sqlCommand.Parameters.AddWithValue("@id", itemIDs[i]);
-                    sqlCommand.Parameters.AddWithValue("@quant", quantities[i]);
-                    sqlCommand.ExecuteNonQuery();
-                }
-
-                cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES ({prices.Sum()}, #{DateTime.Now}#)";
+                cmdString = "UPDATE Items SET Quantity = Quantity - @quant WHERE ItemID = @id";
                 sqlCommand.CommandText = cmdString;
-                int saleRows = sqlCommand.ExecuteNonQuery();
+                sqlCommand.Parameters.AddWithValue("@id", itemIDs[i]);
+                sqlCommand.Parameters.AddWithValue("@quant", quantities[i]);
+                sqlCommand.ExecuteNonQuery();
+            }
 
-                if (itemRows > 0 && saleRows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
+            cmdString = $"INSERT INTO Sales (TotalPrice, TimePlaced) VALUES ({prices.Sum()}, #{DateTime.Now}#)";
+            sqlCommand.CommandText = cmdString;
+            int saleRows = sqlCommand.ExecuteNonQuery();
+
+            if (itemRows > 0 && saleRows > 0)
             {
-                MessageBox.Show(e.Message);
+                success = true;
             }
+
             return success;
         }
 
@@ -237,21 +190,16 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
+
+            int itemRows = sqlCommand.ExecuteNonQuery();
+            cmdString = $"DELETE FROM Sales WHERE SaleID = {id}";
+            sqlCommand.CommandText = cmdString;
+            int saleRows = sqlCommand.ExecuteNonQuery();
+            if (itemRows > 0 && saleRows > 0)
             {
-                int itemRows = sqlCommand.ExecuteNonQuery();
-                cmdString = $"DELETE FROM Sales WHERE SaleID = {id}";
-                sqlCommand.CommandText = cmdString;
-                int saleRows = sqlCommand.ExecuteNonQuery();
-                if (itemRows > 0 && saleRows > 0)
-                {
-                    success = true;
-                }
+                success = true;
             }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
+
             return success;
         }
 
@@ -343,17 +291,11 @@ namespace Project_Milestone_2
                 CommandText = cmdString
             };
             sqlCommand.Parameters.AddWithValue("@id", id);
-            try
+
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
+                success = true;
             }
             return success;
         }

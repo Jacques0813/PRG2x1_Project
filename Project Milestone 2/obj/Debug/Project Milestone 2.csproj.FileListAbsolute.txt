@@ -49,3 +49,13 @@ C:\Users\navy2\Documents\GitHub\PRG2x1_Project\Project Milestone 2\obj\Debug\Pro
 C:\Users\navy2\Documents\GitHub\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.csproj.CoreCompileInputs.cache
 C:\Users\navy2\Documents\GitHub\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.exe
 C:\Users\navy2\Documents\GitHub\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.pdb
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\bin\Debug\Project Milestone 2.exe.config
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\bin\Debug\Project Milestone 2.exe
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\bin\Debug\Project Milestone 2.pdb
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.csprojAssemblyReference.cache
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project_Milestone_2.FrmTuckShop.resources
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project_Milestone_2.Properties.Resources.resources
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.csproj.GenerateResource.cache
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.csproj.CoreCompileInputs.cache
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.exe
+C:\Users\vince\Desktop\New folder (12)\PRG2x1_Project\Project Milestone 2\obj\Debug\Project Milestone 2.pdb

@@ -10,16 +10,6 @@ using System.Data;
 
 namespace Project_Milestone_2
 {
-    //What does this class manage you ask?
-//   ⠀⣤⣤⣤⣤⣀⠀⠀⣤⣤⣤⣤⡄⠀⣤⣤⣤⣤⠀⣤⣤⣤⣤⣤⠀⠀⠀⠀
-//⠀⠀⠀⣿⡇⠀⠈⢻⣧⠀⣿⡇⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀
-//⠀⠀⠀⣿⡇⠀⠀⢸⣿⠀⣿⡟⠛⠛⠀⠀⣿⠛⠛⠓⠀⠀⣠⡿⠁⠀⠀⠀⠀⠀
-//⠀⠀⠀⣿⡇⢀⣀⣾⠏⠀⣿⡇⠀⠀⠀⠀⣿⠀⠀⠀⠀⣴⡟⠁⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠛⠛⠛⠋⠁⠀⠀⠛⠛⠛⠛⠃⠀⠛⠛⠛⠛⠁⠛⠛⠛⠛⠛⠀
-//⠀⠀⠀⠀⠀⣿⣿⡄⠀⢸⣿⠀⢸⡇⠀⠀⠀⣿⠀⠛⠛⢻⡟⠛⠋⣴⡟⠋⠛⠃
-//⠀⠀⠀⠀⠀⣿⠘⣿⡄⢸⣿⠀⢸⡇⠀⠀⠀⣿⠀⠀⠀⢸⡇⠀⠀⠙⢿⣦⣄⠀
-//⠀⠀⠀⠀⠀⣿⠀⠈⢿⣾⣿⠀⢸⣇⠀⠀⠀⣿⠀⠀⠀⢸⡇⠀⠀⠀⠀⠈⢻⣷
-//⠀⠀⠀⠀⠀⠿⠀⠀⠈⠿⠿⠀⠈⠻⠶⠶⠾⠋⠀⠀⠀⠸⠇⠀⠀⠻⠶⠶⠿⠃
     public enum ItemDetail
     {
         Category,
@@ -49,19 +39,12 @@ namespace Project_Milestone_2
             sqlCommand.Parameters.AddWithValue("@name", name);
             sqlCommand.Parameters.AddWithValue("@price", price);
             sqlCommand.Parameters.AddWithValue("@cat", cat);
-            sqlCommand.Parameters.AddWithValue("@quant", quantity);
-            try
+            sqlCommand.Parameters.AddWithValue("@quant", quantity);       
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
+                success = true;
+            }      
             return success;
         }
 
@@ -109,18 +92,13 @@ namespace Project_Milestone_2
                 CommandText = cmdString
             };
             sqlCommand.Parameters.AddWithValue("@id", id);
-            try
+
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
+                success = true;
             }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
+
             return success;
         }
 

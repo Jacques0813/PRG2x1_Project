@@ -5,29 +5,6 @@ using System.Data;
 
 namespace Project_Milestone_2
 {
-//   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠛⠋⠉⣭⠙⠳⣦⡀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠟⠙⣀⣠⡤⠶⠶⠶⠾⣷⡀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡏⠀⢸⡏⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣿⡇⠀⠸⣧⣀⠀⠀⠀⠀⠀⠀⡿⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣧⡀⠀⠉⠙⠛⠛⠶⢶⣿⣿⠇⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⣿⣶⣶⢤⣤⣤⠿⠏⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠟⠉⢉⣛⢶⣄⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣿⣤⣄⣀⢸⣿⠆⣿⣦⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠏⠍⠀⠀⢹⣿⠈⣿⠀⣿⣿⣧⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⠀⣸⠏⠈⠀⠀⠀⢸⣿⠀⣿⠀⣿⡿⠋⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⢠⡟⠐⠀⠀⠀⠀⣾⡇⠀⣻⡇⣿⡄⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⣼⣅⠀⠀⠀⠀⢀⣿⠃⠀⣿⣇⢻⡇⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⠀⠀⣿⣤⣄⣀⣀⢀⣼⡟⠀⢰⣿⢿⢼⡇⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⠀⢀⣼⠟⠛⠛⠻⠿⠿⠛⠀⠀⠈⣿⢸⣆⣷⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠀⣰⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡀⣿⣿⡄⠀⠀⠀⠀⠀
-//⠀⠀⠀⣼⠋⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠛⠛⠷⠦⣄⡀⠀⠀
-//⠀⠀⢸⡯⡄⠀⠀⠀⣰⡿⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠀⠀⢂⣀⡻⣦⠀
-//⠀⠀⢸⣧⠁⠀⠀⢠⣿⡇⠀⠀⠀⠀⠀⠀⠀⢀⣾⣧⣤⡶⠿⠙⢹⣿⠃
-//⠀⠀⣀⣻⣷⣦⣤⣴⣿⣷⣤⣀⠀⢀⣀⣤⣾⠿⠛⠉⠁⠀⣠⣶⡿⠋⠀
-//⣴⡿⢯⠅⠉⣹⣿⠟⠛⠙⠻⠿⠿⠿⠟⠋⠁⠀⣀⣤⣴⠿⠛⠉⠀⠀⠀
-//⠙⢿⣷⣤⣤⣿⣷⣤⣀⡀⠀⠀⣀⣀⣠⣴⡶⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀
-//⠀⠀⠀⠉⠉⠉⠉⠙⠛⠻⠿⠛⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     public enum UserDetail
     {
         Email,
@@ -56,29 +33,22 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
-            {
-                sqlCommand.ExecuteNonQuery();
+      
+            sqlCommand.ExecuteNonQuery();
 
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            {
+                if (dataReader.HasRows)
                 {
-                    if (dataReader.HasRows)
+                    ableToLogin = true;
+                    userEmail = email;
+                    while (dataReader.Read())
                     {
-                        ableToLogin = true;
-                        userEmail = email;
-                        while (dataReader.Read())
-                        {
-                            userName = (string)dataReader["Name"];
-                            userSurname = (string)dataReader["Surname"];
-                        }
+                        userName = (string)dataReader["Name"];
+                        userSurname = (string)dataReader["Surname"];
                     }
                 }
-
-            }
-            catch
-            {
-
-            }
+            }   
             return ableToLogin;
         }
 
@@ -92,18 +62,12 @@ namespace Project_Milestone_2
             sqlCommand.CommandText = cmdString;
             sqlCommand.Parameters.AddWithValue("@email", userEmail);
             sqlCommand.Parameters.AddWithValue("@value", newValue);
-            try
+         
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
+                success = true;
+            }     
             return success;
         }
 
@@ -117,17 +81,11 @@ namespace Project_Milestone_2
                 Connection = sqlConnection,
                 CommandText = cmdString
             };
-            try
-            {
+          
                 int rows = sqlCommand.ExecuteNonQuery();
-                if (rows == 0)
-                {
-                    exists = false;
-                }
-            }
-            catch (SqlException e)
+            if (rows == 0)
             {
-                MessageBox.Show(e.Message);
+                exists = false;
             }
             if (exists)
             {
@@ -142,27 +100,22 @@ namespace Project_Milestone_2
                 sqlCommand.Parameters.AddWithValue("@password", password);
                 sqlCommand.Parameters.AddWithValue("@name", name);
                 sqlCommand.Parameters.AddWithValue("@surname", surname);
-                try
+             
+                rows = sqlCommand.ExecuteNonQuery();
+                if (rows == 1)
                 {
-                    int rows = sqlCommand.ExecuteNonQuery();
-                    if (rows == 1)
+                    success = true;
+                    userEmail = email;
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
-                        success = true;
-                        userEmail = email;
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                        while (dataReader.Read())
                         {
-                            while (dataReader.Read())
-                            {
-                                userName = (string)dataReader["Name"];
-                                userSurname = (string)dataReader["Surname"];
-                            }
+                            userName = (string)dataReader["Name"];
+                            userSurname = (string)dataReader["Surname"];
                         }
                     }
                 }
-                catch (SqlException e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+
                 return success;
             }
         }
