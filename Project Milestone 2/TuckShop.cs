@@ -341,7 +341,7 @@ namespace Project_Milestone_2
             OpenMenu();
         }
 
-        private void BtnClearOrder_Click(object sender, EventArgs e)
+        private void btnClearOrder_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
             richTextBox1.Focus();
@@ -351,7 +351,7 @@ namespace Project_Milestone_2
             itemID.Clear();
         }
 
-        private void BtnOrderAdd(object sender, EventArgs e)
+        private void btnOrderAdd_Click(object sender, EventArgs e)
         {
             string message = "Please select a number of items to add larger than 0";
             string cBox = cboSaleItems.Items[cboSaleItems.SelectedIndex].ToString();
@@ -368,17 +368,17 @@ namespace Project_Milestone_2
             }
         }
 
-        private void BtnOrderRemove(object sender, EventArgs e)
+        private void btnRemoveOrder_Click(object sender, EventArgs e)
         {
             string cBox = cboSaleItems.Items[cboSaleItems.SelectedIndex].ToString();
             int nUD1 = Convert.ToInt32(numericUpDown1.Value);
             string message = "Items removed from list can not be more than was on list";
             int itemPosition = itemName.BinarySearch(cBox);
-            if (quantities[itemPosition]> nUD1)
+            if (quantities[itemPosition] > nUD1)
             {
                 quantities[itemPosition] = quantities[itemPosition] - nUD1;
             }
-            else if(quantities[itemPosition] == nUD1)
+            else if (quantities[itemPosition] == nUD1)
             {
                 itemName.RemoveAt(itemPosition);
                 quantities.RemoveAt(itemPosition);
@@ -392,12 +392,13 @@ namespace Project_Milestone_2
             rtbOrderItems.Text = cBox + ' ' + nUD1 + " has been removed";
         }
 
-        private void BtnOrderCheckout(object sender, EventArgs e)
+        private void btnOrderCheckout_Click(object sender, EventArgs e)
         {
             string message = "Checkout has been applied";
             saleManager.AddSale(quantities, prices, itemID);
             MessageBox.Show(message);
         }
+
         //===============================================================================================
 
 

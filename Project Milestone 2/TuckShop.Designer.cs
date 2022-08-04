@@ -183,7 +183,7 @@ namespace Project_Milestone_2
             this.panel15 = new System.Windows.Forms.Panel();
             this.rtbOrderItems = new System.Windows.Forms.RichTextBox();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOrderCheckout = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.cboSaleItems = new System.Windows.Forms.ComboBox();
             this.btnClearOrder = new System.Windows.Forms.Button();
@@ -1867,7 +1867,7 @@ namespace Project_Milestone_2
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel14.Controls.Add(this.button1);
+            this.panel14.Controls.Add(this.btnOrderCheckout);
             this.panel14.Controls.Add(this.label24);
             this.panel14.Controls.Add(this.cboSaleItems);
             this.panel14.Controls.Add(this.btnClearOrder);
@@ -1880,16 +1880,17 @@ namespace Project_Milestone_2
             this.panel14.Size = new System.Drawing.Size(261, 147);
             this.panel14.TabIndex = 16;
             // 
-            // button1
+            // btnOrderCheckout
             // 
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(47, 111);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Checkout";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnOrderCheckout.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnOrderCheckout.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOrderCheckout.Location = new System.Drawing.Point(47, 111);
+            this.btnOrderCheckout.Name = "btnOrderCheckout";
+            this.btnOrderCheckout.Size = new System.Drawing.Size(156, 23);
+            this.btnOrderCheckout.TabIndex = 8;
+            this.btnOrderCheckout.Text = "Checkout";
+            this.btnOrderCheckout.UseVisualStyleBackColor = false;
+            this.btnOrderCheckout.Click += new System.EventHandler(this.btnOrderCheckout_Click);
             // 
             // label24
             // 
@@ -1916,6 +1917,7 @@ namespace Project_Milestone_2
             this.btnClearOrder.TabIndex = 7;
             this.btnClearOrder.Text = "Clear";
             this.btnClearOrder.UseVisualStyleBackColor = true;
+            this.btnClearOrder.Click += new System.EventHandler(this.btnClearOrder_Click);
             // 
             // label23
             // 
@@ -1934,6 +1936,7 @@ namespace Project_Milestone_2
             this.btnRemoveOrder.TabIndex = 6;
             this.btnRemoveOrder.Text = "Remove";
             this.btnRemoveOrder.UseVisualStyleBackColor = true;
+            this.btnRemoveOrder.Click += new System.EventHandler(this.btnRemoveOrder_Click);
             // 
             // numericUpDown1
             // 
@@ -1950,6 +1953,7 @@ namespace Project_Milestone_2
             this.btnOrderAdd.TabIndex = 5;
             this.btnOrderAdd.Text = "Add";
             this.btnOrderAdd.UseVisualStyleBackColor = true;
+            this.btnOrderAdd.Click += new System.EventHandler(this.btnOrderAdd_Click);
             // 
             // panel13
             // 
@@ -2534,7 +2538,7 @@ namespace Project_Milestone_2
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.RichTextBox rtbOrderItems;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOrderCheckout;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox cboSaleItems;
         private System.Windows.Forms.Button btnClearOrder;
