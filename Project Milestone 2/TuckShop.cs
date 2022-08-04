@@ -360,7 +360,7 @@ namespace Project_Milestone_2
             {
                 quantities.Add(nUD1);
                 itemName.Add(cBox);
-                richTextBox1.Text = cBox + ' ' + nUD1;
+                rtbOrderItems.Text = cBox + ' ' + nUD1;
             }
             else
             {
@@ -388,8 +388,8 @@ namespace Project_Milestone_2
             {
                 MessageBox.Show(message);
             }
-            
-            richTextBox1.Text = cBox + ' ' + nUD1 + " has been removed";
+
+            rtbOrderItems.Text = cBox + ' ' + nUD1 + " has been removed";
         }
 
         private void BtnOrderCheckout(object sender, EventArgs e)
