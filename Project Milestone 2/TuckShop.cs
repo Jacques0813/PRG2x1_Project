@@ -403,12 +403,15 @@ namespace Project_Milestone_2
             DisableEditForm();
             pnlEditFilter.Visible = true;
             pnlEditFilter.Enabled = true;
+            // Sets the default for how the filter-form looks
             txtEditFilterValue.Visible = true;
             txtEditFilterValue.Enabled = true;
             dtpEditFilterValue.Visible = false;
             dtpEditFilterValue.Enabled = false;
-            cboEditFilterField.SelectedIndex = -1;
-            //gboComparison.Controls.OfType<RadioButton>().Select<radio>
+            cboEditFilterValue.Visible = false;
+            cboEditFilterValue.Enabled = false;
+            txtEditFilterValue.Text = "";
+            cboEditFilterField.SelectedIndex = 0;
         }
 
         private void BtnEditFiltersCancel_Click(object sender, EventArgs e)
@@ -429,7 +432,7 @@ namespace Project_Milestone_2
             // Error check.
             try
             {
-                // Checks to see which table is currently open to remove filter on thet table.
+                // Checks to see which table is currently open to remove filter on thet table (Details cannot be filtered).
                 if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
                 {
                     editItemsFilterList.Clear();
@@ -437,7 +440,6 @@ namespace Project_Milestone_2
                 }
                 else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
                 {
-                    //Check if it is admin/////////////////////////////////////////////////////////////////////
                     editSalesFilterList.Clear();
                     ShowSales();
                 }
@@ -459,7 +461,7 @@ namespace Project_Milestone_2
             // Error check.
             try
             {
-                // Puts the filters in the correct format for the method.
+                // Puts the filters in the correct format for the method (some formats like date and categoryID will give problems.
                 if (isDate)
                 {
                     // The date gives problems.
@@ -467,6 +469,7 @@ namespace Project_Milestone_2
                 }
                 else if (isCategory)
                 {
+                    // We want to show the category name and get the category ID, so a combobox stores the names as items and ID's as values.
                     filter = cboEditFilterField.SelectedItem.ToString() + "ID#" + gboComparison.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text + "#" + cboEditFilterValue.SelectedValue;
                 }
                 else
@@ -557,7 +560,6 @@ namespace Project_Milestone_2
             {
                 ErrorHandler.Invoke(ex);
             }
-
             EnableEditForm();
             pnlEditAddItem.Visible = false;
             pnlEditAddItem.Enabled = false;
@@ -602,12 +604,13 @@ namespace Project_Milestone_2
             btnExitEdit.Enabled = false;
         }
 
-        private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)///////////////////////////////////////////////////////////////////////////
+        private void btnEditAddSaleDetailSubmit_Click(object sender, EventArgs e)
         {
             string itemID = cboEditAddSaleDetailItem.SelectedValue.ToString();
             int quantity = int.Parse(nudEditAddSaleDetailQuantity.Value.ToString());
             try
             {
+                // Adds a sale detail and shows message if it was successful or not.
                 if (saleManager.AddSaleDetail(currentSaleID, itemID, quantity))
                 {
                     MessageBox.Show("The record has been added");
@@ -632,6 +635,7 @@ namespace Project_Milestone_2
 
         private void BtnEditChange_Click(object sender, EventArgs e)
         {
+            // Determines which change-form to show the user since different tables have different records.
             if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
             {
                 DisableEditForm();
@@ -656,7 +660,8 @@ namespace Project_Milestone_2
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
             {
-                MessageBox.Show("Only Items and Sale details can be changed. Sales can only be Removed or Added", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Only Items and Sale details can be changed. Sales can only be Removed or Added", "Information", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -683,7 +688,7 @@ namespace Project_Milestone_2
                 for (int i = 0; i < dgvEdit.Columns.Count; i++)
                 {
                     var newValues = values.Split('#');
-                    // Converts CategoryID to the name for display
+                    // Converts CategoryID to the CategoryName for display purposes.
                     if (i == 4)
                     {
                         newValues[i] = cboEditChangeItemCategory.Text;
@@ -692,10 +697,12 @@ namespace Project_Milestone_2
                     if (dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[i].Value.ToString() != newValues[i])
                     {
                         changedValues = changedValues + "\n" + dgvEdit.Columns[i].HeaderText + ": " +
-                        dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[i].Value.ToString().Trim() + " >> " + newValues[i].Trim();/////////////////////////////////////////////
+                        dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[i].Value.ToString().Trim() + " >> " + newValues[i].Trim();
                     }
                 }
-                var result = MessageBox.Show("Are you sure you want to update the following values: " + changedValues, "Change values", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                // Asks user if they're sure then updates the values if yes is selected.
+                var result = MessageBox.Show("Are you sure you want to update the following values: " + changedValues, "Change values", 
+                                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     itemManager.UpdateItemInfo(values);
@@ -726,6 +733,7 @@ namespace Project_Milestone_2
         {
             string itemID = cboEditChangeSaleDetail.SelectedValue.ToString();
             int quantity = int.Parse(nudEditChangeSaleDetail.Value.ToString());
+            // Asks user if they're sure then updates the values if yes is selected.
             var result = MessageBox.Show("Are you sure you want to update the following values: \nQuantity:" + 
                                          dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[2].Value.ToString() +
                                          " >> "  + nudEditChangeSaleDetail.Value.ToString(), "Change values", 
@@ -741,12 +749,13 @@ namespace Project_Milestone_2
                     ErrorHandler.Invoke(ex);
                 }
                 dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
-                EnableEditForm();
-                pnlEditChangeSaleDetail.Visible = false;
-                pnlEditChangeSaleDetail.Enabled = false;
-                btnSalesBack.Enabled = true;
-                btnExitEdit.Enabled = false;
             }
+
+            EnableEditForm();
+            pnlEditChangeSaleDetail.Visible = false;
+            pnlEditChangeSaleDetail.Enabled = false;
+            btnSalesBack.Enabled = true;
+            btnExitEdit.Enabled = false;
         }
 
         private void BtnEditRemove_Click(object sender, EventArgs e)
@@ -767,7 +776,7 @@ namespace Project_Milestone_2
                 {
                     if (cboEditCurrentTable.SelectedItem.ToString() == "Details")
                     {
-                        saleManager.RemoveSaleDetail(currentSaleID, ID);////////////////////////////////////////////////////////////////
+                        saleManager.RemoveSaleDetail(currentSaleID, ID);
                         // Refreshes values.
                         dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
                     }
@@ -812,7 +821,7 @@ namespace Project_Milestone_2
             }
             else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
             {
-                // Shows the user that they can see details by double-clicking the sale
+                // Shows the user that they can see details by double-clicking the sale.
                 lblSale.Visible = true;
                 btnSalesBack.Visible = false;
                 btnSalesBack.Enabled = false;
@@ -822,7 +831,7 @@ namespace Project_Milestone_2
             }
         }
 
-        // When the user wants to filter according to a strange input the input format has to change
+        // When the user wants to filter according to a strange input the input format has to change.
         private void cboEditFilterField_SelectedValueChanged(object sender, EventArgs e)
         {
             // Resets the filter-panel before applying changes
@@ -834,7 +843,7 @@ namespace Project_Milestone_2
             cboEditFilterValue.Enabled = false;
             isDate = false;
             isCategory = false;
-            // Chnages input depending on which field is being filtered.
+            // Changes input depending on which field is being filtered.
             if (cboEditFilterField.Text == "TimePlaced")
             {
                 txtEditFilterValue.Visible = false;
@@ -853,13 +862,15 @@ namespace Project_Milestone_2
             }
         }
 
-        // If a person double-clicks a sale, the sale-details will display
+        // If a person double-clicks a sale, the sale-details will display.
         private void dgvEdit_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // firstly checks if the current table is Sales.
             if (cboEditCurrentTable.Text == "Sales")
             {
                 try
                 {
+                    // Stores the SaleID for later use (Declared up top).
                     currentSaleID = dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[0].Value.ToString();
                     dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
                 }
@@ -882,6 +893,7 @@ namespace Project_Milestone_2
             }
         }
 
+        //Gives a way to go back from the Sale Details.
         private void btnSalesBack_Click(object sender, EventArgs e)
         {
             ShowSales();

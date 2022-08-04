@@ -69,6 +69,14 @@ namespace Project_Milestone_2
             this.btnPlaceOrder = new System.Windows.Forms.Button();
             this.tpEdit = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.pnlEditChangeSaleDetail = new System.Windows.Forms.Panel();
+            this.cboEditChangeSaleDetail = new System.Windows.Forms.ComboBox();
+            this.nudEditChangeSaleDetail = new System.Windows.Forms.NumericUpDown();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.btnEditChangeSaleDetailCancel = new System.Windows.Forms.Button();
+            this.btnEditChangeSaleDetailSubmit = new System.Windows.Forms.Button();
+            this.label54 = new System.Windows.Forms.Label();
             this.pnlEditAddSaleDetail = new System.Windows.Forms.Panel();
             this.nudEditAddSaleDetailQuantity = new System.Windows.Forms.NumericUpDown();
             this.label39 = new System.Windows.Forms.Label();
@@ -224,14 +232,6 @@ namespace Project_Milestone_2
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnExitEditLogin = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
-            this.pnlEditChangeSaleDetail = new System.Windows.Forms.Panel();
-            this.nudEditChangeSaleDetail = new System.Windows.Forms.NumericUpDown();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.btnEditChangeSaleDetailCancel = new System.Windows.Forms.Button();
-            this.btnEditChangeSaleDetailSubmit = new System.Windows.Forms.Button();
-            this.label54 = new System.Windows.Forms.Label();
-            this.cboEditChangeSaleDetail = new System.Windows.Forms.ComboBox();
             this.tcMainScreen.SuspendLayout();
             this.tpLogin.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -244,6 +244,8 @@ namespace Project_Milestone_2
             this.panel2.SuspendLayout();
             this.tpEdit.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.pnlEditChangeSaleDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEditChangeSaleDetail)).BeginInit();
             this.pnlEditAddSaleDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEditAddSaleDetailQuantity)).BeginInit();
             this.pnlEditAddSale.SuspendLayout();
@@ -276,8 +278,6 @@ namespace Project_Milestone_2
             this.tpEditLogin.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel17.SuspendLayout();
-            this.pnlEditChangeSaleDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEditChangeSaleDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainScreen
@@ -669,9 +669,8 @@ namespace Project_Milestone_2
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel8.Controls.Add(this.pnlEditChangeSaleDetail);
             this.panel8.Controls.Add(this.pnlEditAddSaleDetail);
-            this.panel8.Controls.Add(this.pnlEditAddSale);
+            this.panel8.Controls.Add(this.pnlEditChangeSaleDetail);
             this.panel8.Controls.Add(this.txtEditRecordCount);
             this.panel8.Controls.Add(this.label38);
             this.panel8.Controls.Add(this.lblSale);
@@ -685,6 +684,88 @@ namespace Project_Milestone_2
             this.panel8.Size = new System.Drawing.Size(942, 382);
             this.panel8.TabIndex = 8;
             // 
+            // pnlEditChangeSaleDetail
+            // 
+            this.pnlEditChangeSaleDetail.BackColor = System.Drawing.Color.PowderBlue;
+            this.pnlEditChangeSaleDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlEditChangeSaleDetail.Controls.Add(this.cboEditChangeSaleDetail);
+            this.pnlEditChangeSaleDetail.Controls.Add(this.nudEditChangeSaleDetail);
+            this.pnlEditChangeSaleDetail.Controls.Add(this.label40);
+            this.pnlEditChangeSaleDetail.Controls.Add(this.label53);
+            this.pnlEditChangeSaleDetail.Controls.Add(this.btnEditChangeSaleDetailCancel);
+            this.pnlEditChangeSaleDetail.Controls.Add(this.btnEditChangeSaleDetailSubmit);
+            this.pnlEditChangeSaleDetail.Controls.Add(this.label54);
+            this.pnlEditChangeSaleDetail.Enabled = false;
+            this.pnlEditChangeSaleDetail.Location = new System.Drawing.Point(358, 56);
+            this.pnlEditChangeSaleDetail.Name = "pnlEditChangeSaleDetail";
+            this.pnlEditChangeSaleDetail.Size = new System.Drawing.Size(221, 126);
+            this.pnlEditChangeSaleDetail.TabIndex = 98;
+            this.pnlEditChangeSaleDetail.Visible = false;
+            // 
+            // cboEditChangeSaleDetail
+            // 
+            this.cboEditChangeSaleDetail.Enabled = false;
+            this.cboEditChangeSaleDetail.FormattingEnabled = true;
+            this.cboEditChangeSaleDetail.Location = new System.Drawing.Point(87, 38);
+            this.cboEditChangeSaleDetail.Name = "cboEditChangeSaleDetail";
+            this.cboEditChangeSaleDetail.Size = new System.Drawing.Size(99, 21);
+            this.cboEditChangeSaleDetail.TabIndex = 98;
+            // 
+            // nudEditChangeSaleDetail
+            // 
+            this.nudEditChangeSaleDetail.Location = new System.Drawing.Point(87, 63);
+            this.nudEditChangeSaleDetail.Name = "nudEditChangeSaleDetail";
+            this.nudEditChangeSaleDetail.Size = new System.Drawing.Size(41, 20);
+            this.nudEditChangeSaleDetail.TabIndex = 97;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(27, 65);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(49, 13);
+            this.label40.TabIndex = 96;
+            this.label40.Text = "Quantity:";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(27, 41);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(30, 13);
+            this.label53.TabIndex = 91;
+            this.label53.Text = "Item:";
+            // 
+            // btnEditChangeSaleDetailCancel
+            // 
+            this.btnEditChangeSaleDetailCancel.Location = new System.Drawing.Point(30, 91);
+            this.btnEditChangeSaleDetailCancel.Name = "btnEditChangeSaleDetailCancel";
+            this.btnEditChangeSaleDetailCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnEditChangeSaleDetailCancel.TabIndex = 93;
+            this.btnEditChangeSaleDetailCancel.Text = "Cancel";
+            this.btnEditChangeSaleDetailCancel.UseVisualStyleBackColor = true;
+            this.btnEditChangeSaleDetailCancel.Click += new System.EventHandler(this.btnEditChangeSaleDetailCancel_Click);
+            // 
+            // btnEditChangeSaleDetailSubmit
+            // 
+            this.btnEditChangeSaleDetailSubmit.Location = new System.Drawing.Point(111, 91);
+            this.btnEditChangeSaleDetailSubmit.Name = "btnEditChangeSaleDetailSubmit";
+            this.btnEditChangeSaleDetailSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnEditChangeSaleDetailSubmit.TabIndex = 94;
+            this.btnEditChangeSaleDetailSubmit.Text = "Submit";
+            this.btnEditChangeSaleDetailSubmit.UseVisualStyleBackColor = true;
+            this.btnEditChangeSaleDetailSubmit.Click += new System.EventHandler(this.btnEditChangeSaleDetailSubmit_Click);
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(30, 6);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(164, 20);
+            this.label54.TabIndex = 21;
+            this.label54.Text = "Change Sale Detail";
+            // 
             // pnlEditAddSaleDetail
             // 
             this.pnlEditAddSaleDetail.BackColor = System.Drawing.Color.PowderBlue;
@@ -697,7 +778,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSaleDetail.Controls.Add(this.btnEditAddSaleDetailSubmit);
             this.pnlEditAddSaleDetail.Controls.Add(this.label12);
             this.pnlEditAddSaleDetail.Enabled = false;
-            this.pnlEditAddSaleDetail.Location = new System.Drawing.Point(360, 62);
+            this.pnlEditAddSaleDetail.Location = new System.Drawing.Point(357, 57);
             this.pnlEditAddSaleDetail.Name = "pnlEditAddSaleDetail";
             this.pnlEditAddSaleDetail.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSaleDetail.TabIndex = 92;
@@ -776,7 +857,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSale.Controls.Add(this.btnEditSaleAddSubmit);
             this.pnlEditAddSale.Controls.Add(this.label41);
             this.pnlEditAddSale.Enabled = false;
-            this.pnlEditAddSale.Location = new System.Drawing.Point(360, 63);
+            this.pnlEditAddSale.Location = new System.Drawing.Point(35, 2);
             this.pnlEditAddSale.Name = "pnlEditAddSale";
             this.pnlEditAddSale.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSale.TabIndex = 91;
@@ -865,6 +946,7 @@ namespace Project_Milestone_2
             this.pnlEditFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlEditFilter.Controls.Add(this.cboEditFilterValue);
             this.pnlEditFilter.Controls.Add(this.dtpEditFilterValue);
+            this.pnlEditFilter.Controls.Add(this.pnlEditAddSale);
             this.pnlEditFilter.Controls.Add(this.gboComparison);
             this.pnlEditFilter.Controls.Add(this.label50);
             this.pnlEditFilter.Controls.Add(this.label20);
@@ -926,7 +1008,6 @@ namespace Project_Milestone_2
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(31, 17);
             this.radioButton8.TabIndex = 7;
-            this.radioButton8.TabStop = true;
             this.radioButton8.Text = "<";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
@@ -937,7 +1018,6 @@ namespace Project_Milestone_2
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(37, 17);
             this.radioButton7.TabIndex = 6;
-            this.radioButton7.TabStop = true;
             this.radioButton7.Text = "<=";
             this.radioButton7.UseVisualStyleBackColor = true;
             // 
@@ -948,7 +1028,6 @@ namespace Project_Milestone_2
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(34, 17);
             this.radioButton6.TabIndex = 5;
-            this.radioButton6.TabStop = true;
             this.radioButton6.Text = "!=";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
@@ -959,7 +1038,6 @@ namespace Project_Milestone_2
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(74, 17);
             this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
             this.radioButton5.Text = "NOT LIKE";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
@@ -970,7 +1048,6 @@ namespace Project_Milestone_2
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(31, 17);
             this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = ">";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
@@ -981,7 +1058,6 @@ namespace Project_Milestone_2
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(37, 17);
             this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = ">=";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
@@ -992,13 +1068,13 @@ namespace Project_Milestone_2
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(31, 17);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "=";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(48, 17);
@@ -2292,88 +2368,6 @@ namespace Project_Milestone_2
             this.label31.TabIndex = 15;
             this.label31.Text = "Edit User Details";
             // 
-            // pnlEditChangeSaleDetail
-            // 
-            this.pnlEditChangeSaleDetail.BackColor = System.Drawing.Color.PowderBlue;
-            this.pnlEditChangeSaleDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEditChangeSaleDetail.Controls.Add(this.cboEditChangeSaleDetail);
-            this.pnlEditChangeSaleDetail.Controls.Add(this.nudEditChangeSaleDetail);
-            this.pnlEditChangeSaleDetail.Controls.Add(this.label40);
-            this.pnlEditChangeSaleDetail.Controls.Add(this.label53);
-            this.pnlEditChangeSaleDetail.Controls.Add(this.btnEditChangeSaleDetailCancel);
-            this.pnlEditChangeSaleDetail.Controls.Add(this.btnEditChangeSaleDetailSubmit);
-            this.pnlEditChangeSaleDetail.Controls.Add(this.label54);
-            this.pnlEditChangeSaleDetail.Enabled = false;
-            this.pnlEditChangeSaleDetail.Location = new System.Drawing.Point(30, 51);
-            this.pnlEditChangeSaleDetail.Name = "pnlEditChangeSaleDetail";
-            this.pnlEditChangeSaleDetail.Size = new System.Drawing.Size(221, 126);
-            this.pnlEditChangeSaleDetail.TabIndex = 98;
-            this.pnlEditChangeSaleDetail.Visible = false;
-            // 
-            // nudEditChangeSaleDetail
-            // 
-            this.nudEditChangeSaleDetail.Location = new System.Drawing.Point(87, 63);
-            this.nudEditChangeSaleDetail.Name = "nudEditChangeSaleDetail";
-            this.nudEditChangeSaleDetail.Size = new System.Drawing.Size(41, 20);
-            this.nudEditChangeSaleDetail.TabIndex = 97;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(27, 65);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(49, 13);
-            this.label40.TabIndex = 96;
-            this.label40.Text = "Quantity:";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(27, 41);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(30, 13);
-            this.label53.TabIndex = 91;
-            this.label53.Text = "Item:";
-            // 
-            // btnEditChangeSaleDetailCancel
-            // 
-            this.btnEditChangeSaleDetailCancel.Location = new System.Drawing.Point(30, 91);
-            this.btnEditChangeSaleDetailCancel.Name = "btnEditChangeSaleDetailCancel";
-            this.btnEditChangeSaleDetailCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnEditChangeSaleDetailCancel.TabIndex = 93;
-            this.btnEditChangeSaleDetailCancel.Text = "Cancel";
-            this.btnEditChangeSaleDetailCancel.UseVisualStyleBackColor = true;
-            this.btnEditChangeSaleDetailCancel.Click += new System.EventHandler(this.btnEditChangeSaleDetailCancel_Click);
-            // 
-            // btnEditChangeSaleDetailSubmit
-            // 
-            this.btnEditChangeSaleDetailSubmit.Location = new System.Drawing.Point(111, 91);
-            this.btnEditChangeSaleDetailSubmit.Name = "btnEditChangeSaleDetailSubmit";
-            this.btnEditChangeSaleDetailSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnEditChangeSaleDetailSubmit.TabIndex = 94;
-            this.btnEditChangeSaleDetailSubmit.Text = "Submit";
-            this.btnEditChangeSaleDetailSubmit.UseVisualStyleBackColor = true;
-            this.btnEditChangeSaleDetailSubmit.Click += new System.EventHandler(this.btnEditChangeSaleDetailSubmit_Click);
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(30, 6);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(164, 20);
-            this.label54.TabIndex = 21;
-            this.label54.Text = "Change Sale Detail";
-            // 
-            // cboEditChangeSaleDetail
-            // 
-            this.cboEditChangeSaleDetail.Enabled = false;
-            this.cboEditChangeSaleDetail.FormattingEnabled = true;
-            this.cboEditChangeSaleDetail.Location = new System.Drawing.Point(87, 38);
-            this.cboEditChangeSaleDetail.Name = "cboEditChangeSaleDetail";
-            this.cboEditChangeSaleDetail.Size = new System.Drawing.Size(99, 21);
-            this.cboEditChangeSaleDetail.TabIndex = 98;
-            // 
             // FrmTuckShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2402,6 +2396,9 @@ namespace Project_Milestone_2
             this.tpEdit.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.pnlEditChangeSaleDetail.ResumeLayout(false);
+            this.pnlEditChangeSaleDetail.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEditChangeSaleDetail)).EndInit();
             this.pnlEditAddSaleDetail.ResumeLayout(false);
             this.pnlEditAddSaleDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEditAddSaleDetailQuantity)).EndInit();
@@ -2452,9 +2449,6 @@ namespace Project_Milestone_2
             this.panel20.PerformLayout();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
-            this.pnlEditChangeSaleDetail.ResumeLayout(false);
-            this.pnlEditChangeSaleDetail.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEditChangeSaleDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
