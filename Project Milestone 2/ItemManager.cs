@@ -90,17 +90,10 @@ namespace Project_Milestone_2
                 CommandText = cmdString
             };
             sqlCommand.Parameters.AddWithValue("@id", id);
-            try
+            int rows = sqlCommand.ExecuteNonQuery();
+            if (rows > 0)
             {
-                int rows = sqlCommand.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    success = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
+                success = true;
             }
             return success;
         }

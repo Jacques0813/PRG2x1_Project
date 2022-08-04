@@ -669,6 +669,7 @@ namespace Project_Milestone_2
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel8.Controls.Add(this.pnlEditAddSale);
             this.panel8.Controls.Add(this.pnlEditAddSaleDetail);
             this.panel8.Controls.Add(this.pnlEditChangeSaleDetail);
             this.panel8.Controls.Add(this.txtEditRecordCount);
@@ -857,7 +858,7 @@ namespace Project_Milestone_2
             this.pnlEditAddSale.Controls.Add(this.btnEditSaleAddSubmit);
             this.pnlEditAddSale.Controls.Add(this.label41);
             this.pnlEditAddSale.Enabled = false;
-            this.pnlEditAddSale.Location = new System.Drawing.Point(35, 2);
+            this.pnlEditAddSale.Location = new System.Drawing.Point(357, 37);
             this.pnlEditAddSale.Name = "pnlEditAddSale";
             this.pnlEditAddSale.Size = new System.Drawing.Size(221, 119);
             this.pnlEditAddSale.TabIndex = 91;
@@ -946,7 +947,6 @@ namespace Project_Milestone_2
             this.pnlEditFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlEditFilter.Controls.Add(this.cboEditFilterValue);
             this.pnlEditFilter.Controls.Add(this.dtpEditFilterValue);
-            this.pnlEditFilter.Controls.Add(this.pnlEditAddSale);
             this.pnlEditFilter.Controls.Add(this.gboComparison);
             this.pnlEditFilter.Controls.Add(this.label50);
             this.pnlEditFilter.Controls.Add(this.label20);

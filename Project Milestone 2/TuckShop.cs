@@ -64,12 +64,21 @@ namespace Project_Milestone_2
             }
         }
 
+        // This method handles errors depending on what error is given.
         public static void HandleError(Exception ex)
         {
             switch (ex.GetType().ToString())
             {
+                case "System.Data.SqlClient.SqlException":
+                    MessageBox.Show("You tried to input a string into an integer field. The process will be terminated", "Error", 
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case "System.FormatException":
+                    MessageBox.Show("Some data given is not in the correct format. Check to make sure that values like Price don't do not contain letters such as 'R1000', and instead insert '1000'"
+                                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
                 default:
-                    MessageBox.Show("An unknown error has occured, no changes will be made.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.GetType().ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);/////////////////////////////////////////////
                     break;
             }
         }
@@ -452,11 +461,7 @@ namespace Project_Milestone_2
 
         private void BtnEditFiltersApply_Click(object sender, EventArgs e)
         {
-            string filter;
-
-            EnableEditForm();
-            pnlEditFilter.Visible = false;
-            pnlEditFilter.Enabled = false;
+            string filter = "";
 
             // Error check.
             try
@@ -494,10 +499,21 @@ namespace Project_Milestone_2
                 // Shows the user filters are applied.
                 lblEditFilters.Text = "Filters: Filters are applied";
                 lblEditFilters.ForeColor = Color.Blue;
+                EnableEditForm();
+                pnlEditFilter.Visible = false;
+                pnlEditFilter.Enabled = false;
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
+                if (cboEditCurrentTable.SelectedItem.ToString() == "Items")
+                {
+                    editItemsFilterList.Remove(filter);
+                }
+                else if (cboEditCurrentTable.SelectedItem.ToString() == "Sales")
+                {
+                    editSalesFilterList.Remove(filter);
+                }
             }
         }
 
@@ -555,14 +571,14 @@ namespace Project_Milestone_2
                 }
                 // Refreshes values.
                 ShowItems();
+                EnableEditForm();
+                pnlEditAddItem.Visible = false;
+                pnlEditAddItem.Enabled = false;
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
             }
-            EnableEditForm();
-            pnlEditAddItem.Visible = false;
-            pnlEditAddItem.Enabled = false;
         }
 
         private void btnEditSaleAddCancel_Click(object sender, EventArgs e)
@@ -701,7 +717,7 @@ namespace Project_Milestone_2
                     }
                 }
                 // Asks user if they're sure then updates the values if yes is selected.
-                var result = MessageBox.Show("Are you sure you want to update the following values: " + changedValues, "Change values", 
+                var result = MessageBox.Show("Are you sure you want to update the following values: " + changedValues, "Change values",
                                              MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
@@ -709,15 +725,14 @@ namespace Project_Milestone_2
                 }
                 // Refreshes the data.
                 ShowItems();
+                EnableEditForm();
+                pnlEditChangeItem.Visible = false;
+                pnlEditChangeItem.Enabled = false;
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
             }
-
-            EnableEditForm();
-            pnlEditChangeItem.Visible = false;
-            pnlEditChangeItem.Enabled = false;
         }
 
         private void btnEditChangeSaleDetailCancel_Click(object sender, EventArgs e)
