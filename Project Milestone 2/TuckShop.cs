@@ -27,7 +27,7 @@ using System.Windows.Forms;
 //—————————————————————————————
 namespace Project_Milestone_2
 {
-    // Delegate to be used as container for event
+    // Delegate to be used as container for event.
     public delegate void EventHandler(Exception exception);
     public partial class FrmTuckShop : Form
     {
