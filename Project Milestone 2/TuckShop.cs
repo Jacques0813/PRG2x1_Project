@@ -353,11 +353,19 @@ namespace Project_Milestone_2
 
         private void BtnOrderAdd(object sender, EventArgs e)
         {
+            string message = "Please select a number of items to add larger than 0";
             string cBox = cboSaleItems.Items[cboSaleItems.SelectedIndex].ToString();
             int nUD1 = Convert.ToInt32(numericUpDown1.Value);
-            quantities.Add(nUD1);
-            itemName.Add(cBox);
-            richTextBox1.Text = cBox + ' ' + nUD1;
+            if (nUD1 > 0)
+            {
+                quantities.Add(nUD1);
+                itemName.Add(cBox);
+                richTextBox1.Text = cBox + ' ' + nUD1;
+            }
+            else
+            {
+                MessageBox.Show(message);
+            }
         }
 
         private void BtnOrderRemove(object sender, EventArgs e)
