@@ -337,11 +337,11 @@ namespace Project_Milestone_2
             {
                 quantities.Add(nUD1);
                 itemName.Add(cBox);
-                rtbOrderItems.Text = cBox + ' ' + nUD1;
+                rtbOrderItems.Text = rtbOrderItems.Text + '\n' + cBox + ' ' + nUD1;
             }
             else
             {
-                MessageBox.Show(message);
+                MessageBox.Show(message, "Message");
             }
         }
 
