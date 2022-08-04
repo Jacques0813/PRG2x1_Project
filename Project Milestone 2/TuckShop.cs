@@ -601,14 +601,14 @@ namespace Project_Milestone_2
                 }
                 // Refreshes.
                 ShowSales();
+                EnableEditForm();
+                pnlEditAddSale.Visible = false;
+                pnlEditAddSale.Enabled = false;
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
             }
-            EnableEditForm();
-            pnlEditAddSale.Visible = false;
-            pnlEditAddSale.Enabled = false;
         }
 
         private void btnEditAddSaleDetailCancel_Click(object sender, EventArgs e)
@@ -637,16 +637,16 @@ namespace Project_Milestone_2
                 }
                 // Refreshes.
                 dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
+                EnableEditForm();
+                btnExitEdit.Enabled = false;
+                pnlEditAddSaleDetail.Visible = false;
+                pnlEditAddSaleDetail.Enabled = false;
+                btnSalesBack.Enabled = true;
             }
             catch (Exception ex)
             {
                 ErrorHandler.Invoke(ex);
             }
-            EnableEditForm();
-            btnExitEdit.Enabled = false;
-            pnlEditAddSaleDetail.Visible = false;
-            pnlEditAddSaleDetail.Enabled = false;
-            btnSalesBack.Enabled = true;
         }
 
         private void BtnEditChange_Click(object sender, EventArgs e)
@@ -746,31 +746,31 @@ namespace Project_Milestone_2
 
         private void btnEditChangeSaleDetailSubmit_Click(object sender, EventArgs e)
         {
-            string itemID = cboEditChangeSaleDetail.SelectedValue.ToString();
-            int quantity = int.Parse(nudEditChangeSaleDetail.Value.ToString());
-            // Asks user if they're sure then updates the values if yes is selected.
-            var result = MessageBox.Show("Are you sure you want to update the following values: \nQuantity:" + 
-                                         dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[2].Value.ToString() +
-                                         " >> "  + nudEditChangeSaleDetail.Value.ToString(), "Change values", 
-                                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            try
             {
-                try
+                string itemID = cboEditChangeSaleDetail.SelectedValue.ToString();
+                int quantity = int.Parse(nudEditChangeSaleDetail.Value.ToString());
+                // Asks user if they're sure then updates the values if yes is selected.
+                var result = MessageBox.Show("Are you sure you want to update the following values: \nQuantity:" +
+                                             dgvEdit.Rows[dgvEdit.CurrentCell.RowIndex].Cells[2].Value.ToString() +
+                                             " >> " + nudEditChangeSaleDetail.Value.ToString(), "Change values",
+                                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
                 {
                     saleManager.UpdateSaleDetail(currentSaleID, itemID, quantity);
+                    dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
                 }
-                catch (Exception ex)
-                {
-                    ErrorHandler.Invoke(ex);
-                }
-                dgvEdit.DataSource = saleManager.ShowSaleDetails(currentSaleID);
-            }
 
-            EnableEditForm();
-            pnlEditChangeSaleDetail.Visible = false;
-            pnlEditChangeSaleDetail.Enabled = false;
-            btnSalesBack.Enabled = true;
-            btnExitEdit.Enabled = false;
+                EnableEditForm();
+                pnlEditChangeSaleDetail.Visible = false;
+                pnlEditChangeSaleDetail.Enabled = false;
+                btnSalesBack.Enabled = true;
+                btnExitEdit.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Invoke(ex);
+            }
         }
 
         private void BtnEditRemove_Click(object sender, EventArgs e)
